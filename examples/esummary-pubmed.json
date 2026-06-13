@@ -1,0 +1,80 @@
+{
+  "description": "ESummary example: Retrieve document summaries for PubMed articles",
+  "request": {
+    "method": "GET",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi",
+    "parameters": {
+      "db": "pubmed",
+      "id": "36328499,36328500",
+      "retmode": "json",
+      "version": "2.0"
+    }
+  },
+  "response": {
+    "header": {
+      "type": "esummary",
+      "version": "0.3"
+    },
+    "result": {
+      "uids": ["36328499", "36328500"],
+      "36328499": {
+        "uid": "36328499",
+        "pubdate": "2022 Dec 15",
+        "epubdate": "2022 Nov 2",
+        "source": "Nature",
+        "authors": [
+          { "name": "Smith J", "authtype": "Author", "clusterid": "" },
+          { "name": "Jones M", "authtype": "Author", "clusterid": "" }
+        ],
+        "lastauthor": "Jones M",
+        "title": "Example article title about CRISPR gene editing",
+        "sorttitle": "example article title about crispr gene editing",
+        "volume": "612",
+        "issue": "7941",
+        "pages": "456-463",
+        "lang": ["eng"],
+        "nlmuniqueid": "0410462",
+        "issn": "0028-0836",
+        "essn": "1476-4687",
+        "pubtype": ["Journal Article", "Research Support, N.I.H., Extramural"],
+        "recordstatus": "PubMed - indexed for MEDLINE",
+        "pubstatus": "4",
+        "articleids": [
+          { "idtype": "pubmed", "idtypen": 1, "value": "36328499" },
+          { "idtype": "doi", "idtypen": 3, "value": "10.1038/s41586-022-05543-x" },
+          { "idtype": "pmc", "idtypen": 8, "value": "PMC9876543" }
+        ],
+        "history": [
+          { "pubstatus": "received", "date": "2022/08/14 00:00" },
+          { "pubstatus": "accepted", "date": "2022/10/26 00:00" },
+          { "pubstatus": "pubmed", "date": "2022/11/03 00:00" },
+          { "pubstatus": "medline", "date": "2022/12/16 00:00" },
+          { "pubstatus": "entrez", "date": "2022/11/02 00:00" }
+        ],
+        "references": [],
+        "attributes": ["Has Abstract"],
+        "pmcrefcount": 42,
+        "fulljournalname": "Nature",
+        "elocationid": "doi: 10.1038/s41586-022-05543-x",
+        "doctype": "citation",
+        "srccontriblist": [],
+        "booktitle": "",
+        "medium": "",
+        "edition": "",
+        "publisherlocation": "",
+        "publishername": "",
+        "srcdate": "",
+        "reportnumber": "",
+        "availablefromurl": "",
+        "locationlabel": "",
+        "doccontriblist": [],
+        "docdate": "",
+        "bookname": "",
+        "chapter": "",
+        "sortpubdate": "2022/12/15 00:00",
+        "sortfirstauthor": "Smith J",
+        "vernaculartitle": ""
+      }
+    }
+  }
+}

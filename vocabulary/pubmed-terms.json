@@ -1,0 +1,167 @@
+{
+  "name": "PubMed / NCBI E-utilities Vocabulary",
+  "description": "Key terms, acronyms, and concepts used in the PubMed and NCBI E-utilities API ecosystem.",
+  "version": "1.0.0",
+  "terms": [
+    {
+      "term": "PMID",
+      "definition": "PubMed Identifier. A unique integer assigned to each article in the PubMed database. Used to retrieve specific records via EFetch and ESummary.",
+      "category": "identifier"
+    },
+    {
+      "term": "PMCID",
+      "definition": "PubMed Central Identifier. A unique identifier (format: PMC followed by digits) for articles archived in PubMed Central (PMC).",
+      "category": "identifier"
+    },
+    {
+      "term": "DOI",
+      "definition": "Digital Object Identifier. A persistent identifier assigned to journal articles for stable linking across publishers.",
+      "category": "identifier"
+    },
+    {
+      "term": "MeSH",
+      "definition": "Medical Subject Headings. The controlled vocabulary thesaurus maintained by the National Library of Medicine (NLM) for indexing and searching biomedical literature in PubMed.",
+      "category": "taxonomy"
+    },
+    {
+      "term": "NCBI",
+      "definition": "National Center for Biotechnology Information. A branch of the National Library of Medicine (NLM) that provides access to biomedical databases including PubMed, GenBank, and 38 other Entrez databases.",
+      "category": "organization"
+    },
+    {
+      "term": "NLM",
+      "definition": "National Library of Medicine. The world's largest biomedical library, which maintains PubMed and MeSH.",
+      "category": "organization"
+    },
+    {
+      "term": "Entrez",
+      "definition": "The integrated, text-based search and retrieval system used at NCBI for all major databases including PubMed, Protein, Nucleotide, Gene, Structure, and more.",
+      "category": "system"
+    },
+    {
+      "term": "E-utilities",
+      "definition": "Entrez Programming Utilities. A set of nine server-side programs that provide API access to all Entrez databases. Includes ESearch, EFetch, ESummary, ELink, EPost, EInfo, ESpell, EGQuery, and ECitMatch.",
+      "category": "api"
+    },
+    {
+      "term": "ESearch",
+      "definition": "E-utility for searching Entrez databases. Returns a list of UIDs matching a text query. Results can be cached on the History server.",
+      "category": "endpoint"
+    },
+    {
+      "term": "EFetch",
+      "definition": "E-utility for retrieving full records from Entrez databases. Supports multiple return types (abstract, medline, FASTA, GenBank) and modes (xml, text, asn.1).",
+      "category": "endpoint"
+    },
+    {
+      "term": "ESummary",
+      "definition": "E-utility for retrieving document summaries (DocSums) for specified UIDs. Returns abbreviated metadata in XML or JSON format.",
+      "category": "endpoint"
+    },
+    {
+      "term": "ELink",
+      "definition": "E-utility for finding records linked to a set of input UIDs, either within the same database or across different Entrez databases. Also provides LinkOut URLs to external resources.",
+      "category": "endpoint"
+    },
+    {
+      "term": "EPost",
+      "definition": "E-utility for uploading a list of UIDs to the Entrez History server for use in subsequent calls. Returns a WebEnv and query_key.",
+      "category": "endpoint"
+    },
+    {
+      "term": "EInfo",
+      "definition": "E-utility for retrieving information about Entrez databases including field names, link names, and statistics.",
+      "category": "endpoint"
+    },
+    {
+      "term": "ESpell",
+      "definition": "E-utility for retrieving spelling suggestions for search terms within an Entrez database.",
+      "category": "endpoint"
+    },
+    {
+      "term": "EGQuery",
+      "definition": "E-utility for performing a global query across all Entrez databases and returning hit counts per database.",
+      "category": "endpoint"
+    },
+    {
+      "term": "ECitMatch",
+      "definition": "E-utility for converting citation strings (journal, year, volume, page, author) to PubMed IDs.",
+      "category": "endpoint"
+    },
+    {
+      "term": "WebEnv",
+      "definition": "Web Environment string. A server-side session token returned by ESearch (with usehistory=y), EPost, and ELink to store sets of UIDs on the Entrez History server for reuse across multiple calls.",
+      "category": "parameter"
+    },
+    {
+      "term": "query_key",
+      "definition": "An integer assigned to each set of UIDs stored on the Entrez History server within a WebEnv session.",
+      "category": "parameter"
+    },
+    {
+      "term": "UID",
+      "definition": "Unique Identifier. An integer identifier assigned to each record in an Entrez database (e.g., PMID for PubMed).",
+      "category": "concept"
+    },
+    {
+      "term": "retmode",
+      "definition": "Retrieval mode parameter. Controls the output format of E-utility responses. Common values: xml, json, text, asn.1.",
+      "category": "parameter"
+    },
+    {
+      "term": "rettype",
+      "definition": "Retrieval type parameter. Controls the type of record returned by EFetch. Values vary by database. For PubMed: abstract, medline, uilist, docsum.",
+      "category": "parameter"
+    },
+    {
+      "term": "retmax",
+      "definition": "Maximum number of records to retrieve in a single E-utility call. Default is 20; maximum is 100,000 for ESearch and 10,000 for EFetch/ESummary.",
+      "category": "parameter"
+    },
+    {
+      "term": "retstart",
+      "definition": "Sequential index of the first record to retrieve in a paginated E-utility response.",
+      "category": "parameter"
+    },
+    {
+      "term": "PMC",
+      "definition": "PubMed Central. NCBI's free full-text archive of biomedical and life sciences journal literature. Provides OA articles, OAI-PMH harvesting, BioC API, and ID conversion services.",
+      "category": "database"
+    },
+    {
+      "term": "OAI-PMH",
+      "definition": "Open Archives Initiative Protocol for Metadata Harvesting. A standard for metadata interoperability used by PMC to enable bulk harvesting of article metadata.",
+      "category": "standard"
+    },
+    {
+      "term": "BioC",
+      "definition": "A simple XML/JSON format for biological data and NLP interchange. Used by the PMC BioC API to provide structured full-text content for text mining applications.",
+      "category": "format"
+    },
+    {
+      "term": "MEDLINE",
+      "definition": "Medical Literature Analysis and Retrieval System Online. The primary component of PubMed, providing access to over 25 million references from more than 5,200 journals. Records include MeSH terms.",
+      "category": "database"
+    },
+    {
+      "term": "Abstract",
+      "definition": "A brief summary of a scientific article, typically including purpose, methods, results, and conclusions. Widely available in PubMed for indexed articles.",
+      "category": "concept"
+    },
+    {
+      "term": "api_key",
+      "definition": "Optional NCBI API key that increases the request rate limit from 3 requests/second to 10 requests/second. Obtained by registering at NCBI.",
+      "category": "parameter"
+    },
+    {
+      "term": "LinkOut",
+      "definition": "NCBI program that links PubMed records to relevant external resources including full-text articles, sequences, clinical resources, and more via ELink.",
+      "category": "feature"
+    },
+    {
+      "term": "DocSum",
+      "definition": "Document Summary. An abbreviated record returned by ESummary containing key metadata fields for each UID.",
+      "category": "concept"
+    }
+  ]
+}

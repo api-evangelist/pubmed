@@ -1,0 +1,74 @@
+{
+  "description": "EFetch example: Retrieve abstracts for specific PubMed articles in JSON-compatible format",
+  "request": {
+    "method": "GET",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+    "parameters": {
+      "db": "pubmed",
+      "id": "36328499,36328500",
+      "rettype": "abstract",
+      "retmode": "xml"
+    }
+  },
+  "notes": "EFetch returns XML for PubMed articles. The rettype=abstract with retmode=xml returns PubmedArticleSet XML. Use rettype=medline and retmode=text for MEDLINE flat file format. The response below shows a simplified representation of the XML structure.",
+  "response_structure": {
+    "PubmedArticleSet": {
+      "PubmedArticle": [
+        {
+          "MedlineCitation": {
+            "PMID": "36328499",
+            "Article": {
+              "Journal": {
+                "Title": "Nature",
+                "JournalIssue": {
+                  "Volume": "612",
+                  "Issue": "7941",
+                  "PubDate": { "Year": "2022", "Month": "Dec" }
+                }
+              },
+              "ArticleTitle": "Example article title about CRISPR gene editing",
+              "Abstract": {
+                "AbstractText": "Abstract text describing the study methods, results, and conclusions."
+              },
+              "AuthorList": {
+                "Author": [
+                  {
+                    "LastName": "Smith",
+                    "ForeName": "Jane",
+                    "Initials": "J",
+                    "AffiliationInfo": {
+                      "Affiliation": "Department of Genetics, University of California, Berkeley, CA, USA"
+                    }
+                  }
+                ]
+              },
+              "Language": "eng",
+              "PublicationTypeList": {
+                "PublicationType": ["Journal Article", "Research Support, N.I.H., Extramural"]
+              },
+              "ArticleIdList": {
+                "ArticleId": [
+                  { "IdType": "pubmed", "value": "36328499" },
+                  { "IdType": "doi", "value": "10.1038/s41586-022-05543-x" },
+                  { "IdType": "pmc", "value": "PMC9876543" }
+                ]
+              }
+            },
+            "MeshHeadingList": {
+              "MeshHeading": [
+                {
+                  "DescriptorName": "CRISPR-Cas Systems",
+                  "MajorTopicYN": "Y"
+                },
+                {
+                  "DescriptorName": "Gene Editing",
+                  "MajorTopicYN": "Y"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  }
+}

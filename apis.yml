@@ -34,7 +34,7 @@ apis:
       - type: Documentation
         url: https://www.ncbi.nlm.nih.gov/books/NBK25497/
       - type: OpenAPI
-        url: https://eutils.ncbi.nlm.nih.gov/entrez/eutils/
+        url: https://raw.githubusercontent.com/api-evangelist/pubmed/refs/heads/main/openapi/entrez-eutils.json
       - type: RateLimits
         url: https://raw.githubusercontent.com/api-evangelist/pubmed/refs/heads/main/rate-limits/entrez-eutils.yml
       - type: Plans

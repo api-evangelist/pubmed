@@ -1,0 +1,136 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "fabio": "http://purl.org/spar/fabio/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "bibo": "http://purl.org/ontology/bibo/",
+    "foaf": "http://xmlns.com/foaf/0.1/",
+    "prism": "http://prismstandard.org/namespaces/basic/2.0/",
+    "ncbi": "https://www.ncbi.nlm.nih.gov/",
+
+    "PubMedArticle": "fabio:ResearchPaper",
+    "pmid": {
+      "@id": "bibo:pmid",
+      "@type": "xsd:string"
+    },
+    "pmcid": {
+      "@id": "bibo:uri",
+      "@type": "@id"
+    },
+    "doi": {
+      "@id": "bibo:doi",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "dcterms:title",
+      "@type": "xsd:string"
+    },
+    "abstract": {
+      "@id": "dcterms:abstract",
+      "@type": "xsd:string"
+    },
+    "authors": {
+      "@id": "dcterms:creator",
+      "@container": "@set"
+    },
+    "journal": {
+      "@id": "fabio:isPublishedIn",
+      "@type": "@id"
+    },
+    "pubDate": {
+      "@id": "dcterms:date",
+      "@type": "xsd:string"
+    },
+    "keywords": {
+      "@id": "prism:keyword",
+      "@container": "@set"
+    },
+    "meshTerms": {
+      "@id": "ncbi:mesh",
+      "@container": "@set"
+    },
+    "publicationTypes": {
+      "@id": "dcterms:type",
+      "@container": "@set"
+    },
+    "language": {
+      "@id": "dcterms:language",
+      "@type": "xsd:string"
+    },
+    "fullTextLinks": {
+      "@id": "schema:url",
+      "@container": "@set"
+    },
+    "citations": {
+      "@id": "schema:citation"
+    },
+    "affiliations": {
+      "@id": "schema:affiliation",
+      "@container": "@set"
+    },
+    "Author": "schema:Person",
+    "lastName": {
+      "@id": "foaf:familyName",
+      "@type": "xsd:string"
+    },
+    "firstName": {
+      "@id": "foaf:firstName",
+      "@type": "xsd:string"
+    },
+    "initials": {
+      "@id": "bibo:authorList",
+      "@type": "xsd:string"
+    },
+    "orcid": {
+      "@id": "schema:identifier",
+      "@type": "@id"
+    },
+    "affiliation": {
+      "@id": "schema:affiliation",
+      "@type": "xsd:string"
+    },
+    "Journal": "fabio:Journal",
+    "issn": {
+      "@id": "bibo:issn",
+      "@type": "xsd:string"
+    },
+    "volume": {
+      "@id": "bibo:volume",
+      "@type": "xsd:string"
+    },
+    "issue": {
+      "@id": "bibo:issue",
+      "@type": "xsd:string"
+    },
+    "pages": {
+      "@id": "bibo:pages",
+      "@type": "xsd:string"
+    },
+    "MeshTerm": {
+      "@id": "ncbi:MeshHeading"
+    },
+    "descriptorName": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "descriptorUI": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "isMajorTopic": {
+      "@id": "schema:significance",
+      "@type": "xsd:boolean"
+    },
+    "Grant": "schema:Grant",
+    "grantId": {
+      "@id": "schema:identifier",
+      "@type": "xsd:string"
+    },
+    "agency": {
+      "@id": "schema:funder",
+      "@type": "xsd:string"
+    },
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}

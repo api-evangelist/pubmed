@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/pubmed/main/json-schema/esearch-response.json",
+  "title": "ESearch Response",
+  "description": "Schema for the JSON response from the NCBI E-utilities ESearch endpoint.",
+  "type": "object",
+  "properties": {
+    "header": {
+      "type": "object",
+      "description": "Response header metadata.",
+      "properties": {
+        "type": { "type": "string", "description": "Response type identifier.", "example": "esearch" },
+        "version": { "type": "string", "description": "ESearch version.", "example": "0.3" }
+      }
+    },
+    "esearchresult": {
+      "type": "object",
+      "description": "Main search result container.",
+      "properties": {
+        "count": {
+          "type": "string",
+          "description": "Total number of records matching the query.",
+          "example": "42317"
+        },
+        "retmax": {
+          "type": "string",
+          "description": "Number of UIDs returned in this response.",
+          "example": "20"
+        },
+        "retstart": {
+          "type": "string",
+          "description": "Index of the first UID returned.",
+          "example": "0"
+        },
+        "querykey": {
+          "type": "string",
+          "description": "Integer query key assigned on the History server (only present when usehistory=y).",
+          "example": "1"
+        },
+        "webenv": {
+          "type": "string",
+          "description": "Web environment string for use with History server (only present when usehistory=y)."
+        },
+        "idlist": {
+          "type": "array",
+          "description": "List of UIDs matching the search query.",
+          "items": { "type": "string" },
+          "example": ["36328499", "36328500", "36328501"]
+        },
+        "translationset": {
+          "type": "array",
+          "description": "Details of any query translation performed by Entrez.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "from": { "type": "string", "description": "Original search term." },
+              "to": { "type": "string", "description": "Translated Entrez query term." }
+            }
+          }
+        },
+        "translationstack": {
+          "type": "array",
+          "description": "Stack representation of the query translation.",
+          "items": {
+            "oneOf": [
+              {
+                "type": "object",
+                "properties": {
+                  "term": { "type": "string" },
+                  "field": { "type": "string" },
+                  "count": { "type": "string" },
+                  "explode": { "type": "string" }
+                }
+              },
+              { "type": "string", "enum": ["AND", "OR", "NOT", "GROUP"] }
+            ]
+          }
+        },
+        "querytranslation": {
+          "type": "string",
+          "description": "Full Entrez query translation used for the search.",
+          "example": "\"neoplasms\"[MeSH Terms] OR \"cancer\"[All Fields]"
+        },
+        "errorlist": {
+          "type": "object",
+          "description": "Lists any errors encountered during the search.",
+          "properties": {
+            "phrasesnotfound": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Search phrases that produced no results."
+            },
+            "fieldsnotfound": {
+              "type": "array",
+              "items": { "type": "string" },
+              "description": "Specified fields that were not recognized."
+            }
+          }
+        },
+        "warninglist": {
+          "type": "object",
+          "description": "Lists any warnings generated during the search.",
+          "properties": {
+            "phrasesignored": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "quotedphrasesnotfound": {
+              "type": "array",
+              "items": { "type": "string" }
+            },
+            "outputmessages": {
+              "type": "array",
+              "items": { "type": "string" }
+            }
+          }
+        }
+      },
+      "required": ["count", "retmax", "retstart", "idlist"]
+    }
+  },
+  "required": ["esearchresult"]
+}

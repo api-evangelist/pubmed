@@ -1,0 +1,89 @@
+{
+  "@context": "https://raw.githubusercontent.com/api-evangelist/pubmed/main/json-ld/pubmed-context.jsonld",
+  "@type": "PubMedArticle",
+  "@id": "https://pubmed.ncbi.nlm.nih.gov/36328499/",
+  "pmid": "36328499",
+  "pmcid": "PMC9876543",
+  "doi": "10.1038/s41586-022-05543-x",
+  "title": "Structural basis of CRISPR-SpCas9 inhibition by an anti-CRISPR protein",
+  "abstract": "CRISPR-Cas systems are nucleoprotein complexes that provide adaptive immunity against mobile genetic elements in prokaryotes. As a result of the widespread use of Cas9 in genome engineering, anti-CRISPR proteins that inhibit Cas9 have attracted interest as tools to control CRISPR-based genome editing. Here we report the structures of Staphylococcus aureus Cas9 (SaCas9) in complex with the anti-CRISPR protein AcrIIA4.",
+  "pubDate": "2022/12/15",
+  "language": "eng",
+  "authors": [
+    {
+      "@type": "Author",
+      "lastName": "Smith",
+      "firstName": "Jane",
+      "initials": "J",
+      "affiliation": "Department of Structural Biology, University of California, San Francisco, CA, USA",
+      "orcid": "https://orcid.org/0000-0001-2345-6789"
+    },
+    {
+      "@type": "Author",
+      "lastName": "Jones",
+      "firstName": "Michael",
+      "initials": "M",
+      "affiliation": "Howard Hughes Medical Institute, San Francisco, CA, USA"
+    }
+  ],
+  "journal": {
+    "@type": "Journal",
+    "title": "Nature",
+    "isoAbbreviation": "Nature",
+    "issn": "0028-0836",
+    "volume": "612",
+    "issue": "7941",
+    "pages": "456-463"
+  },
+  "meshTerms": [
+    {
+      "@type": "MeshTerm",
+      "descriptorName": "CRISPR-Cas Systems",
+      "descriptorUI": "D000071557",
+      "isMajorTopic": true
+    },
+    {
+      "@type": "MeshTerm",
+      "descriptorName": "Gene Editing",
+      "descriptorUI": "D000072669",
+      "isMajorTopic": true
+    },
+    {
+      "@type": "MeshTerm",
+      "descriptorName": "Bacterial Proteins",
+      "descriptorUI": "D001426",
+      "isMajorTopic": false
+    }
+  ],
+  "keywords": ["CRISPR", "anti-CRISPR", "Cas9", "genome editing", "structural biology"],
+  "publicationTypes": ["Journal Article", "Research Support, N.I.H., Extramural"],
+  "fullTextLinks": [
+    {
+      "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9876543/",
+      "name": "PubMed Central",
+      "category": "Free full text"
+    },
+    {
+      "url": "https://doi.org/10.1038/s41586-022-05543-x",
+      "name": "Nature",
+      "category": "Full text"
+    }
+  ],
+  "grantList": [
+    {
+      "@type": "Grant",
+      "grantId": "R01 GM123456",
+      "agency": "National Institute of General Medical Sciences",
+      "acronym": "NIGMS",
+      "country": "United States"
+    },
+    {
+      "@type": "Grant",
+      "grantId": "Howard Hughes Medical Institute",
+      "agency": "Howard Hughes Medical Institute",
+      "acronym": "HHMI",
+      "country": "United States"
+    }
+  ],
+  "citations": 127
+}

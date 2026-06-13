@@ -1,0 +1,991 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "NCBI Entrez E-utilities API",
+    "description": "The Entrez Programming Utilities (E-utilities) provide a stable interface to the NCBI Entrez query and database system. Nine server-side programs allow searching, fetching, posting, linking, and summarizing records across PubMed and 38 NCBI databases including PubMed Central, Gene, Nuccore, and Protein. Supports searching 35M+ biomedical citations, retrieving abstracts, full-text links, MeSH terms, and related article metadata.",
+    "version": "v1.0.0",
+    "termsOfService": "https://www.ncbi.nlm.nih.gov/home/about/policies.shtml",
+    "contact": {
+      "name": "NCBI Help Desk",
+      "url": "https://support.nlm.nih.gov/",
+      "email": "info@ncbi.nlm.nih.gov"
+    },
+    "license": {
+      "name": "NCBI Data Use Policies",
+      "url": "https://www.ncbi.nlm.nih.gov/home/about/policies.shtml"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils",
+      "description": "NCBI E-utilities production server"
+    }
+  ],
+  "paths": {
+    "/esearch.fcgi": {
+      "get": {
+        "summary": "ESearch - Search a database",
+        "description": "Performs a text query search in a single Entrez database and retrieves a list of matching UIDs (unique identifiers). Results can be stored on the Entrez History server for later use with other E-utilities.",
+        "operationId": "ESearch",
+        "tags": ["Search"],
+        "parameters": [
+          {
+            "name": "db",
+            "in": "query",
+            "description": "Database to search. Common values: pubmed, pmc, gene, nucleotide, protein, assembly, biosample.",
+            "required": true,
+            "schema": { "type": "string", "example": "pubmed" }
+          },
+          {
+            "name": "term",
+            "in": "query",
+            "description": "Entrez text query (URL encoded). Spaces may be replaced by '+' signs. Can include field tags like [Author] or [MeSH Terms].",
+            "required": true,
+            "schema": { "type": "string", "example": "cancer[MeSH Terms]" }
+          },
+          {
+            "name": "retstart",
+            "in": "query",
+            "description": "Sequential index of the first UID in the retrieved set (default: 0).",
+            "required": false,
+            "schema": { "type": "integer", "default": 0 }
+          },
+          {
+            "name": "retmax",
+            "in": "query",
+            "description": "Total number of UIDs to retrieve (default: 20, max: 100000).",
+            "required": false,
+            "schema": { "type": "integer", "default": 20, "maximum": 100000 }
+          },
+          {
+            "name": "rettype",
+            "in": "query",
+            "description": "Retrieval type. Values: uilist (default), count.",
+            "required": false,
+            "schema": { "type": "string", "enum": ["uilist", "count"], "default": "uilist" }
+          },
+          {
+            "name": "retmode",
+            "in": "query",
+            "description": "Response format. Values: xml (default), json.",
+            "required": false,
+            "schema": { "type": "string", "enum": ["xml", "json"], "default": "xml" }
+          },
+          {
+            "name": "sort",
+            "in": "query",
+            "description": "Sort order for results.",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": ["journal", "pub+date", "most+recent", "relevance", "title", "author"]
+            }
+          },
+          {
+            "name": "field",
+            "in": "query",
+            "description": "Limit search to specified field (e.g., Author, Title, MeSH Terms).",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "datetype",
+            "in": "query",
+            "description": "Type of date to limit the search. Values: mdat (modification date), pdat (publication date), edat (Entrez date).",
+            "required": false,
+            "schema": { "type": "string", "enum": ["mdat", "pdat", "edat", "crdt", "mhda"] }
+          },
+          {
+            "name": "reldate",
+            "in": "query",
+            "description": "Limit results to items published in the last n days.",
+            "required": false,
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "mindate",
+            "in": "query",
+            "description": "Minimum date for date range filter (YYYY/MM/DD, YYYY/MM, or YYYY).",
+            "required": false,
+            "schema": { "type": "string", "example": "2020/01/01" }
+          },
+          {
+            "name": "maxdate",
+            "in": "query",
+            "description": "Maximum date for date range filter (YYYY/MM/DD, YYYY/MM, or YYYY).",
+            "required": false,
+            "schema": { "type": "string", "example": "2025/12/31" }
+          },
+          {
+            "name": "usehistory",
+            "in": "query",
+            "description": "Set to 'y' to store results on the Entrez History server for use in subsequent calls.",
+            "required": false,
+            "schema": { "type": "string", "enum": ["y"] }
+          },
+          {
+            "name": "WebEnv",
+            "in": "query",
+            "description": "Web environment string returned from a previous ESearch, EPost, or ELink call.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "query_key",
+            "in": "query",
+            "description": "Integer query key returned by a previous ESearch, EPost, or ELink call.",
+            "required": false,
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "tool",
+            "in": "query",
+            "description": "Name of application making the call (no spaces). Recommended.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Contact email address. Recommended for NCBI to contact in case of problems.",
+            "required": false,
+            "schema": { "type": "string", "format": "email" }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key to enable up to 10 requests/second (vs 3 req/s without key).",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful search response with UIDs",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ESearchResult" }
+              },
+              "application/xml": {
+                "schema": { "$ref": "#/components/schemas/ESearchResult" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/efetch.fcgi": {
+      "get": {
+        "summary": "EFetch - Retrieve full records",
+        "description": "Retrieves full records in a specified format for a list of input UIDs from an Entrez database. Supports multiple return types and modes depending on the target database.",
+        "operationId": "EFetch",
+        "tags": ["Retrieval"],
+        "parameters": [
+          {
+            "name": "db",
+            "in": "query",
+            "description": "Database from which to retrieve records (e.g., pubmed, nucleotide, protein, gene).",
+            "required": true,
+            "schema": { "type": "string", "example": "pubmed" }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Comma-delimited list of UIDs to retrieve.",
+            "required": false,
+            "schema": { "type": "string", "example": "36328499,36328500" }
+          },
+          {
+            "name": "retstart",
+            "in": "query",
+            "description": "Sequential index of the first record to retrieve (default: 0).",
+            "required": false,
+            "schema": { "type": "integer", "default": 0 }
+          },
+          {
+            "name": "retmax",
+            "in": "query",
+            "description": "Number of records to retrieve (default: 20, max: 10000).",
+            "required": false,
+            "schema": { "type": "integer", "default": 20, "maximum": 10000 }
+          },
+          {
+            "name": "rettype",
+            "in": "query",
+            "description": "Retrieval type. For PubMed: abstract, medline, uilist, docsum. For sequences: fasta, gb, gp.",
+            "required": false,
+            "schema": { "type": "string", "example": "abstract" }
+          },
+          {
+            "name": "retmode",
+            "in": "query",
+            "description": "Retrieval mode. Values: xml, text, asn.1.",
+            "required": false,
+            "schema": { "type": "string", "enum": ["xml", "text", "asn.1"] }
+          },
+          {
+            "name": "WebEnv",
+            "in": "query",
+            "description": "Web environment string from a previous ESearch, EPost, or ELink call.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "query_key",
+            "in": "query",
+            "description": "Integer query key from a previous ESearch, EPost, or ELink call.",
+            "required": false,
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "tool",
+            "in": "query",
+            "description": "Name of application making the call (no spaces). Recommended.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Contact email address. Recommended.",
+            "required": false,
+            "schema": { "type": "string", "format": "email" }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key to enable up to 10 requests/second.",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Full records in the requested format",
+            "content": {
+              "application/xml": {
+                "schema": { "$ref": "#/components/schemas/EFetchResult" }
+              },
+              "text/plain": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/esummary.fcgi": {
+      "get": {
+        "summary": "ESummary - Retrieve document summaries",
+        "description": "Returns document summaries (DocSums) for a list of input UIDs or for a set of UIDs stored on the Entrez History server.",
+        "operationId": "ESummary",
+        "tags": ["Summary"],
+        "parameters": [
+          {
+            "name": "db",
+            "in": "query",
+            "description": "Database containing the UIDs (e.g., pubmed, gene, assembly).",
+            "required": true,
+            "schema": { "type": "string", "example": "pubmed" }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Comma-delimited list of UIDs.",
+            "required": false,
+            "schema": { "type": "string", "example": "36328499,36328500" }
+          },
+          {
+            "name": "retstart",
+            "in": "query",
+            "description": "Sequential index of first DocSum to retrieve (default: 1).",
+            "required": false,
+            "schema": { "type": "integer", "default": 1 }
+          },
+          {
+            "name": "retmax",
+            "in": "query",
+            "description": "Number of DocSums to retrieve (max: 10000).",
+            "required": false,
+            "schema": { "type": "integer", "maximum": 10000 }
+          },
+          {
+            "name": "retmode",
+            "in": "query",
+            "description": "Response format. Values: xml (default), json.",
+            "required": false,
+            "schema": { "type": "string", "enum": ["xml", "json"], "default": "xml" }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "Set to '2.0' to use version 2.0 ESummary XML with database-specific fields.",
+            "required": false,
+            "schema": { "type": "string", "enum": ["2.0"] }
+          },
+          {
+            "name": "WebEnv",
+            "in": "query",
+            "description": "Web environment string from a previous ESearch, EPost, or ELink call.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "query_key",
+            "in": "query",
+            "description": "Integer query key from a previous call.",
+            "required": false,
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "tool",
+            "in": "query",
+            "description": "Name of application making the call.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Contact email address.",
+            "required": false,
+            "schema": { "type": "string", "format": "email" }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key to enable higher request rate.",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Document summaries in requested format",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/ESummaryResult" }
+              },
+              "application/xml": {
+                "schema": { "$ref": "#/components/schemas/ESummaryResult" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/elink.fcgi": {
+      "get": {
+        "summary": "ELink - Retrieve linked records",
+        "description": "Returns UIDs linked to an input set of UIDs in either the same database or a different Entrez database. Also returns LinkOut URLs for non-Entrez external resources, and checks for the existence of links in either direction.",
+        "operationId": "ELink",
+        "tags": ["Links"],
+        "parameters": [
+          {
+            "name": "dbfrom",
+            "in": "query",
+            "description": "Database containing the input UIDs.",
+            "required": true,
+            "schema": { "type": "string", "example": "pubmed" }
+          },
+          {
+            "name": "db",
+            "in": "query",
+            "description": "Database to search for linked records. Omit when cmd is llinks or llinkslib.",
+            "required": false,
+            "schema": { "type": "string", "example": "pmc" }
+          },
+          {
+            "name": "id",
+            "in": "query",
+            "description": "Comma-delimited list of UIDs.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "cmd",
+            "in": "query",
+            "description": "ELink command mode.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": ["neighbor", "neighbor_score", "neighbor_history", "acheck", "ncheck", "lcheck", "llinks", "llinkslib", "prlinks"],
+              "default": "neighbor"
+            }
+          },
+          {
+            "name": "linkname",
+            "in": "query",
+            "description": "Name of a specific link to retrieve (e.g., pubmed_pubmed, pubmed_pmc).",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "term",
+            "in": "query",
+            "description": "Entrez query to filter linked UIDs.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "retmode",
+            "in": "query",
+            "description": "Response format (xml or json).",
+            "required": false,
+            "schema": { "type": "string", "enum": ["xml", "json"], "default": "xml" }
+          },
+          {
+            "name": "holding",
+            "in": "query",
+            "description": "Name of a LinkOut provider to restrict LinkOut links.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "datetype",
+            "in": "query",
+            "description": "Type of date to limit the link results.",
+            "required": false,
+            "schema": { "type": "string", "enum": ["mdat", "pdat", "edat", "crdt", "mhda"] }
+          },
+          {
+            "name": "reldate",
+            "in": "query",
+            "description": "Limit results to items published in the last n days.",
+            "required": false,
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "mindate",
+            "in": "query",
+            "description": "Minimum date for date range filter.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "maxdate",
+            "in": "query",
+            "description": "Maximum date for date range filter.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "WebEnv",
+            "in": "query",
+            "description": "Web environment string from a previous call.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "query_key",
+            "in": "query",
+            "description": "Integer query key from a previous call.",
+            "required": false,
+            "schema": { "type": "integer" }
+          },
+          {
+            "name": "tool",
+            "in": "query",
+            "description": "Name of application making the call.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Contact email address.",
+            "required": false,
+            "schema": { "type": "string", "format": "email" }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key to enable higher request rate.",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Linked records or LinkOut URLs",
+            "content": {
+              "application/xml": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/epost.fcgi": {
+      "post": {
+        "summary": "EPost - Upload UIDs to History server",
+        "description": "Accepts a list of UIDs from a given database and stores them on the Entrez History server. The stored set can then be used by subsequent ESearch, ESummary, EFetch, or ELink calls.",
+        "operationId": "EPost",
+        "tags": ["History"],
+        "requestBody": {
+          "content": {
+            "application/x-www-form-urlencoded": {
+              "schema": {
+                "type": "object",
+                "required": ["db", "id"],
+                "properties": {
+                  "db": {
+                    "type": "string",
+                    "description": "Database name.",
+                    "example": "pubmed"
+                  },
+                  "id": {
+                    "type": "string",
+                    "description": "Comma-delimited list of UIDs.",
+                    "example": "36328499,36328500,36328501"
+                  },
+                  "WebEnv": {
+                    "type": "string",
+                    "description": "Existing web environment to append UIDs to."
+                  },
+                  "tool": {
+                    "type": "string",
+                    "description": "Name of application making the call."
+                  },
+                  "email": {
+                    "type": "string",
+                    "description": "Contact email address."
+                  },
+                  "api_key": {
+                    "type": "string",
+                    "description": "API key to enable higher request rate."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "WebEnv and query_key for use in subsequent calls",
+            "content": {
+              "application/xml": {
+                "schema": { "$ref": "#/components/schemas/EPostResult" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/einfo.fcgi": {
+      "get": {
+        "summary": "EInfo - Get database information",
+        "description": "Provides a list of all valid Entrez databases, or information about a single database including field names, index terms, links to other Entrez databases, and other metadata.",
+        "operationId": "EInfo",
+        "tags": ["Info"],
+        "parameters": [
+          {
+            "name": "db",
+            "in": "query",
+            "description": "Target database. Omit to return a list of all valid Entrez databases.",
+            "required": false,
+            "schema": { "type": "string", "example": "pubmed" }
+          },
+          {
+            "name": "version",
+            "in": "query",
+            "description": "Set to '2.0' for EInfo XML version 2.0 with additional field attributes.",
+            "required": false,
+            "schema": { "type": "string", "enum": ["2.0"] }
+          },
+          {
+            "name": "retmode",
+            "in": "query",
+            "description": "Response format. Values: xml (default), json.",
+            "required": false,
+            "schema": { "type": "string", "enum": ["xml", "json"], "default": "xml" }
+          },
+          {
+            "name": "tool",
+            "in": "query",
+            "description": "Name of application making the call.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Contact email address.",
+            "required": false,
+            "schema": { "type": "string", "format": "email" }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key to enable higher request rate.",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Database information or list of databases",
+            "content": {
+              "application/json": {
+                "schema": { "$ref": "#/components/schemas/EInfoResult" }
+              },
+              "application/xml": {
+                "schema": { "$ref": "#/components/schemas/EInfoResult" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/espell.fcgi": {
+      "get": {
+        "summary": "ESpell - Retrieve spelling suggestions",
+        "description": "Retrieves spelling suggestions for search terms in a given Entrez database.",
+        "operationId": "ESpell",
+        "tags": ["Search"],
+        "parameters": [
+          {
+            "name": "db",
+            "in": "query",
+            "description": "Database to check spelling suggestions against.",
+            "required": true,
+            "schema": { "type": "string", "example": "pubmed" }
+          },
+          {
+            "name": "term",
+            "in": "query",
+            "description": "Search term to check for spelling suggestions (URL encoded).",
+            "required": true,
+            "schema": { "type": "string", "example": "asthmaa" }
+          },
+          {
+            "name": "tool",
+            "in": "query",
+            "description": "Name of application making the call.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Contact email address.",
+            "required": false,
+            "schema": { "type": "string", "format": "email" }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key to enable higher request rate.",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Spelling suggestions",
+            "content": {
+              "application/xml": {
+                "schema": { "$ref": "#/components/schemas/ESpellResult" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/egquery.fcgi": {
+      "get": {
+        "summary": "EGQuery - Global search across all databases",
+        "description": "Performs a text query in all Entrez databases simultaneously and returns the number of results for the query in each database.",
+        "operationId": "EGQuery",
+        "tags": ["Search"],
+        "parameters": [
+          {
+            "name": "term",
+            "in": "query",
+            "description": "Entrez search query (URL encoded).",
+            "required": true,
+            "schema": { "type": "string", "example": "diabetes" }
+          },
+          {
+            "name": "tool",
+            "in": "query",
+            "description": "Name of application making the call.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Contact email address.",
+            "required": false,
+            "schema": { "type": "string", "format": "email" }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key to enable higher request rate.",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Result counts across all Entrez databases",
+            "content": {
+              "application/xml": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/ecitmatch.cgi": {
+      "get": {
+        "summary": "ECitMatch - Match citations to PubMed IDs",
+        "description": "Retrieves PubMed IDs (PMIDs) that correspond to a set of input citation strings. Each citation string must include journal, year, volume, page, author name, and a user-assigned key.",
+        "operationId": "ECitMatch",
+        "tags": ["Search"],
+        "parameters": [
+          {
+            "name": "db",
+            "in": "query",
+            "description": "Only 'pubmed' is supported.",
+            "required": true,
+            "schema": { "type": "string", "enum": ["pubmed"] }
+          },
+          {
+            "name": "bdata",
+            "in": "query",
+            "description": "Citation strings formatted as: journal|year|volume|page|author|key|, separated by %0D (encoded newlines).",
+            "required": true,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "retmode",
+            "in": "query",
+            "description": "Response format (xml).",
+            "required": false,
+            "schema": { "type": "string", "enum": ["xml"] }
+          },
+          {
+            "name": "tool",
+            "in": "query",
+            "description": "Name of application making the call.",
+            "required": false,
+            "schema": { "type": "string" }
+          },
+          {
+            "name": "email",
+            "in": "query",
+            "description": "Contact email address.",
+            "required": false,
+            "schema": { "type": "string", "format": "email" }
+          },
+          {
+            "name": "api_key",
+            "in": "query",
+            "description": "API key to enable higher request rate.",
+            "required": false,
+            "schema": { "type": "string" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Citation to PMID mapping results",
+            "content": {
+              "application/xml": {
+                "schema": { "type": "object" }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ESearchResult": {
+        "type": "object",
+        "properties": {
+          "esearchresult": {
+            "type": "object",
+            "properties": {
+              "count": { "type": "string", "description": "Total number of records matching the query." },
+              "retmax": { "type": "string", "description": "Number of UIDs returned in this response." },
+              "retstart": { "type": "string", "description": "Index of the first UID returned." },
+              "querykey": { "type": "string", "description": "Integer query key assigned on the History server." },
+              "webenv": { "type": "string", "description": "Web environment string for History server." },
+              "idlist": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "List of UIDs matching the query."
+              },
+              "translationset": {
+                "type": "array",
+                "items": { "type": "object" },
+                "description": "Query translation details."
+              },
+              "querytranslation": { "type": "string", "description": "Entrez query translation used." }
+            }
+          }
+        }
+      },
+      "EFetchResult": {
+        "type": "object",
+        "description": "Full records returned by EFetch. Structure varies by database and rettype/retmode."
+      },
+      "ESummaryResult": {
+        "type": "object",
+        "properties": {
+          "result": {
+            "type": "object",
+            "description": "Object with UIDs as keys and document summaries as values.",
+            "properties": {
+              "uids": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "List of UIDs in the result set."
+              }
+            },
+            "additionalProperties": {
+              "type": "object",
+              "description": "Document summary for a UID."
+            }
+          }
+        }
+      },
+      "EPostResult": {
+        "type": "object",
+        "properties": {
+          "epostresult": {
+            "type": "object",
+            "properties": {
+              "querykey": { "type": "string", "description": "Integer query key for the uploaded UIDs." },
+              "webenv": { "type": "string", "description": "Web environment string for History server." }
+            }
+          }
+        }
+      },
+      "EInfoResult": {
+        "type": "object",
+        "properties": {
+          "einforesult": {
+            "type": "object",
+            "properties": {
+              "dblist": {
+                "type": "array",
+                "items": { "type": "string" },
+                "description": "List of all valid Entrez databases (when no db parameter)."
+              },
+              "dbinfo": {
+                "type": "object",
+                "description": "Detailed database information when db parameter is supplied.",
+                "properties": {
+                  "dbname": { "type": "string" },
+                  "menuname": { "type": "string" },
+                  "description": { "type": "string" },
+                  "dbbuild": { "type": "string" },
+                  "count": { "type": "string" },
+                  "lastupdate": { "type": "string" },
+                  "fieldlist": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": { "type": "string" },
+                        "fullname": { "type": "string" },
+                        "description": { "type": "string" },
+                        "termcount": { "type": "string" },
+                        "isdate": { "type": "string" },
+                        "isnumerical": { "type": "string" },
+                        "singletoken": { "type": "string" },
+                        "hierarchy": { "type": "string" },
+                        "ishidden": { "type": "string" }
+                      }
+                    }
+                  },
+                  "linklist": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": { "type": "string" },
+                        "menu": { "type": "string" },
+                        "description": { "type": "string" },
+                        "dbto": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "ESpellResult": {
+        "type": "object",
+        "properties": {
+          "espellresult": {
+            "type": "object",
+            "properties": {
+              "database": { "type": "string" },
+              "query": { "type": "string" },
+              "correctedquery": { "type": "string", "description": "Spell-corrected version of the query." },
+              "spelledquery": {
+                "type": "object",
+                "properties": {
+                  "replaced": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "position": { "type": "string" },
+                        "text": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ApiKeyAuth": {
+        "type": "apiKey",
+        "in": "query",
+        "name": "api_key",
+        "description": "Optional NCBI API key. Without a key: 3 requests/second. With a key: 10 requests/second. Register at https://www.ncbi.nlm.nih.gov/account/"
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Search",
+      "description": "Operations for searching Entrez databases"
+    },
+    {
+      "name": "Retrieval",
+      "description": "Operations for retrieving records from Entrez databases"
+    },
+    {
+      "name": "Summary",
+      "description": "Operations for retrieving document summaries"
+    },
+    {
+      "name": "Links",
+      "description": "Operations for finding linked records between databases"
+    },
+    {
+      "name": "History",
+      "description": "Operations for managing sets of records on the Entrez History server"
+    },
+    {
+      "name": "Info",
+      "description": "Operations for retrieving database metadata and information"
+    }
+  ]
+}

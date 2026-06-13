@@ -1,0 +1,46 @@
+{
+  "description": "ELink example: Find related PubMed articles and linked PMC full-text records",
+  "request_related_articles": {
+    "description": "Find related PubMed articles for a given PMID",
+    "method": "GET",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi",
+    "parameters": {
+      "dbfrom": "pubmed",
+      "db": "pubmed",
+      "id": "36328499",
+      "cmd": "neighbor_score",
+      "retmode": "json"
+    }
+  },
+  "request_pmc_link": {
+    "description": "Find PMC full-text links for a PubMed article",
+    "method": "GET",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi",
+    "parameters": {
+      "dbfrom": "pubmed",
+      "db": "pmc",
+      "id": "36328499",
+      "cmd": "neighbor",
+      "linkname": "pubmed_pmc"
+    }
+  },
+  "response_structure": {
+    "header": {
+      "type": "elink",
+      "version": "0.3"
+    },
+    "linksets": [
+      {
+        "dbfrom": "pubmed",
+        "ids": ["36328499"],
+        "linksetdbs": [
+          {
+            "dbto": "pubmed",
+            "linkname": "pubmed_pubmed",
+            "links": ["36328500", "36234567", "36123456"]
+          }
+        ]
+      }
+    ]
+  }
+}

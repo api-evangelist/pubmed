@@ -1,0 +1,51 @@
+{
+  "description": "ESearch example: Search PubMed for articles about CRISPR published in 2024",
+  "request": {
+    "method": "GET",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+    "parameters": {
+      "db": "pubmed",
+      "term": "CRISPR[Title/Abstract]",
+      "retmode": "json",
+      "retmax": "5",
+      "sort": "most+recent",
+      "datetype": "pdat",
+      "mindate": "2024/01/01",
+      "maxdate": "2024/12/31"
+    }
+  },
+  "response": {
+    "header": {
+      "type": "esearch",
+      "version": "0.3"
+    },
+    "esearchresult": {
+      "count": "18423",
+      "retmax": "5",
+      "retstart": "0",
+      "idlist": [
+        "39467832",
+        "39465211",
+        "39463987",
+        "39461542",
+        "39460123"
+      ],
+      "translationset": [
+        {
+          "from": "CRISPR[Title/Abstract]",
+          "to": "CRISPR[Title/Abstract]"
+        }
+      ],
+      "querytranslation": "CRISPR[Title/Abstract]",
+      "errorlist": {
+        "phrasesnotfound": [],
+        "fieldsnotfound": []
+      },
+      "warninglist": {
+        "phrasesignored": [],
+        "quotedphrasesnotfound": [],
+        "outputmessages": ["No items found."]
+      }
+    }
+  }
+}

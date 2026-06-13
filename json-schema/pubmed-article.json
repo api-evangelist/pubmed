@@ -1,0 +1,211 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/pubmed/main/json-schema/pubmed-article.json",
+  "title": "PubMed Article",
+  "description": "Schema for a PubMed article citation including metadata, abstract, authors, MeSH terms, and identifiers as returned by the NCBI E-utilities API.",
+  "type": "object",
+  "properties": {
+    "pmid": {
+      "type": "string",
+      "description": "PubMed unique identifier (PMID).",
+      "pattern": "^[0-9]+$",
+      "example": "36328499"
+    },
+    "title": {
+      "type": "string",
+      "description": "Full article title."
+    },
+    "abstract": {
+      "type": "string",
+      "description": "Full article abstract text."
+    },
+    "authors": {
+      "type": "array",
+      "description": "List of authors.",
+      "items": {
+        "$ref": "#/$defs/Author"
+      }
+    },
+    "journal": {
+      "$ref": "#/$defs/Journal"
+    },
+    "pubDate": {
+      "type": "string",
+      "description": "Publication date in YYYY/MM/DD format.",
+      "example": "2023/01/15"
+    },
+    "doi": {
+      "type": "string",
+      "description": "Digital Object Identifier (DOI).",
+      "example": "10.1038/s41586-022-05543-x"
+    },
+    "pmcid": {
+      "type": "string",
+      "description": "PubMed Central identifier.",
+      "pattern": "^PMC[0-9]+$",
+      "example": "PMC9876543"
+    },
+    "meshTerms": {
+      "type": "array",
+      "description": "Medical Subject Headings (MeSH) terms assigned to the article.",
+      "items": {
+        "$ref": "#/$defs/MeshTerm"
+      }
+    },
+    "keywords": {
+      "type": "array",
+      "description": "Author-supplied keywords.",
+      "items": { "type": "string" }
+    },
+    "publicationTypes": {
+      "type": "array",
+      "description": "Types of publication (e.g., Journal Article, Review, Clinical Trial).",
+      "items": { "type": "string" }
+    },
+    "articleIds": {
+      "type": "array",
+      "description": "List of article identifiers across different systems.",
+      "items": {
+        "$ref": "#/$defs/ArticleId"
+      }
+    },
+    "language": {
+      "type": "string",
+      "description": "Language of the article.",
+      "example": "eng"
+    },
+    "country": {
+      "type": "string",
+      "description": "Country of the publisher.",
+      "example": "United States"
+    },
+    "fullTextLinks": {
+      "type": "array",
+      "description": "Links to full text versions of the article.",
+      "items": {
+        "$ref": "#/$defs/FullTextLink"
+      }
+    },
+    "grantList": {
+      "type": "array",
+      "description": "Funding grants associated with the article.",
+      "items": {
+        "$ref": "#/$defs/Grant"
+      }
+    },
+    "affiliations": {
+      "type": "array",
+      "description": "Author affiliation strings.",
+      "items": { "type": "string" }
+    },
+    "citations": {
+      "type": "integer",
+      "description": "Number of times the article has been cited.",
+      "minimum": 0
+    },
+    "nlmUniqueId": {
+      "type": "string",
+      "description": "NLM unique identifier for the journal."
+    },
+    "issnLinking": {
+      "type": "string",
+      "description": "ISSN used for linking."
+    },
+    "epubDate": {
+      "type": "string",
+      "description": "Electronic publication date."
+    },
+    "revisedDate": {
+      "type": "string",
+      "description": "Date the record was last revised."
+    },
+    "entrezDate": {
+      "type": "string",
+      "description": "Date the record entered Entrez."
+    }
+  },
+  "required": ["pmid", "title"],
+  "$defs": {
+    "Author": {
+      "type": "object",
+      "description": "An author of the article.",
+      "properties": {
+        "lastName": { "type": "string", "description": "Author last name." },
+        "firstName": { "type": "string", "description": "Author first name." },
+        "initials": { "type": "string", "description": "Author initials." },
+        "collectiveName": { "type": "string", "description": "Collective or group author name." },
+        "affiliation": { "type": "string", "description": "Author institutional affiliation." },
+        "orcid": {
+          "type": "string",
+          "description": "ORCID identifier for the author.",
+          "pattern": "^[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{3}[0-9X]$"
+        }
+      }
+    },
+    "Journal": {
+      "type": "object",
+      "description": "Journal in which the article was published.",
+      "properties": {
+        "title": { "type": "string", "description": "Full journal title." },
+        "isoAbbreviation": { "type": "string", "description": "ISO abbreviated journal title." },
+        "issn": { "type": "string", "description": "ISSN of the journal." },
+        "volume": { "type": "string", "description": "Volume number." },
+        "issue": { "type": "string", "description": "Issue number." },
+        "pages": { "type": "string", "description": "Page range.", "example": "123-134" }
+      }
+    },
+    "MeshTerm": {
+      "type": "object",
+      "description": "A Medical Subject Heading (MeSH) descriptor assigned to the article.",
+      "properties": {
+        "descriptorName": { "type": "string", "description": "MeSH descriptor name." },
+        "descriptorUI": { "type": "string", "description": "MeSH descriptor unique identifier." },
+        "isMajorTopic": { "type": "boolean", "description": "Whether this is a major topic of the article." },
+        "qualifierList": {
+          "type": "array",
+          "description": "MeSH subheading qualifiers.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "qualifierName": { "type": "string" },
+              "qualifierUI": { "type": "string" },
+              "isMajorTopic": { "type": "boolean" }
+            }
+          }
+        }
+      }
+    },
+    "ArticleId": {
+      "type": "object",
+      "description": "An identifier for an article in a specific system.",
+      "properties": {
+        "idType": {
+          "type": "string",
+          "description": "Type of identifier.",
+          "enum": ["pubmed", "pmc", "doi", "pii", "pmcbook", "bookaccession", "mid"]
+        },
+        "value": { "type": "string", "description": "Identifier value." }
+      },
+      "required": ["idType", "value"]
+    },
+    "FullTextLink": {
+      "type": "object",
+      "description": "A link to a full-text version of the article.",
+      "properties": {
+        "url": { "type": "string", "format": "uri", "description": "URL to the full text." },
+        "name": { "type": "string", "description": "Name of the full-text provider." },
+        "category": { "type": "string", "description": "Category (e.g., Free full text, Full text)." }
+      }
+    },
+    "Grant": {
+      "type": "object",
+      "description": "A funding grant associated with the article.",
+      "properties": {
+        "grantId": { "type": "string", "description": "Grant identifier." },
+        "agency": { "type": "string", "description": "Funding agency name." },
+        "country": { "type": "string", "description": "Country of the funding agency." },
+        "acronym": { "type": "string", "description": "Agency acronym (e.g., NIH, NHGRI)." }
+      }
+    }
+  }
+}
