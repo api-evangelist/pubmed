@@ -1,0 +1,71 @@
+name: PubMed / NCBI E-utilities FinOps
+description: Financial operations profile for PubMed and NCBI E-utilities APIs. All NCBI/PubMed APIs are free public services operated by the U.S. National Library of Medicine (NLM), part of the National Institutes of Health (NIH). There are no usage fees, subscription costs, or commercial licensing fees for API access.
+provider: PubMed / NCBI
+url: https://www.ncbi.nlm.nih.gov/home/develop/api/
+operatedBy: U.S. National Library of Medicine (NLM) / National Institutes of Health (NIH)
+
+cost:
+  model: Free / Public Good
+  pricing: $0.00
+  currency: USD
+  notes: >
+    NCBI/PubMed APIs are a U.S. Government work funded by federal appropriations
+    to the National Institutes of Health. All E-utility endpoints, PMC APIs, and
+    associated services are provided free of charge to the global research
+    community with no metered billing, subscription fees, or commercial licensing
+    requirements.
+
+plans:
+  - name: Free (No API Key)
+    monthlyCost: $0.00
+    currency: USD
+    rateLimitReqPerSec: 3
+    features:
+      - Full access to all E-utility endpoints
+      - No registration required
+      - No expiration
+
+  - name: Free (With API Key)
+    monthlyCost: $0.00
+    currency: USD
+    rateLimitReqPerSec: 10
+    features:
+      - Full access to all E-utility endpoints
+      - Free NCBI account required
+      - Higher throughput
+      - Eligible for elevated rate limits upon request
+
+dataLicensing:
+  - database: PubMed
+    license: Public Domain (U.S. Government work)
+    notes: >
+      PubMed citation data is a U.S. Government work and is in the public domain.
+      However, underlying publisher content (abstracts, full text) may be subject
+      to publisher copyright. Redistribution of bulk citation data should comply
+      with NCBI data distribution policies.
+    url: https://www.ncbi.nlm.nih.gov/home/about/policies/
+
+  - database: PubMed Central (PMC) Open Access
+    license: Varies by article (Creative Commons, public domain, or publisher-specific)
+    notes: >
+      PMC Open Access articles are available under various open licenses.
+      The OA subset may be used for text mining and bulk download per NCBI
+      policies. Commercial use depends on the individual article license.
+    url: https://pmc.ncbi.nlm.nih.gov/tools/openftlist/
+
+costOptimization:
+  - tip: Use History Server (WebEnv and query_key) to store large result sets server-side and avoid re-fetching
+  - tip: Batch UID lookups using EPost before calling EFetch to reduce total request count
+  - tip: Obtain a free API key to triple throughput from 3 to 10 req/s at no cost
+  - tip: Schedule large jobs on weekends or weekday nights (9 PM – 5 AM ET) to avoid peak-hour restrictions
+  - tip: Use ESearch with usehistory=y and retmax=0 to count results before downloading large sets
+  - tip: Request compressed responses where supported to reduce bandwidth
+
+budget:
+  apiCost: $0.00/month
+  infrastructureCost: Developer-dependent (compute, storage for cached responses)
+  notes: >
+    Since the API itself is free, the primary costs for production applications
+    using PubMed APIs are developer time, compute resources for parsing and
+    storing results, and any third-party infrastructure. There are no API
+    vendor invoices to manage.

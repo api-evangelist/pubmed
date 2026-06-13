@@ -1,0 +1,52 @@
+name: PubMed / NCBI E-utilities API Plans
+description: NCBI E-utilities and PubMed APIs are free public services provided by the National Library of Medicine (NLM), a branch of the U.S. National Institutes of Health. There are no paid tiers or subscription plans. Access is differentiated by whether an API key is used, which affects rate limits.
+provider: PubMed / NCBI
+url: https://www.ncbi.nlm.nih.gov/home/develop/api/
+plans:
+
+  - name: Anonymous / No API Key
+    description: Free access without registration. Limited to 3 API requests per second from a single IP address. Suitable for light, ad-hoc use and evaluation.
+    url: https://www.ncbi.nlm.nih.gov/books/NBK25497/
+    price: Free
+    priceCurrency: USD
+    rateLimits:
+      - name: Requests per Second
+        value: 3
+        unit: requests/second
+        scope: per IP address
+    features:
+      - Access to all 9 E-utility endpoints
+      - Search PubMed and 38 NCBI databases
+      - Retrieve citations, abstracts, and metadata
+      - XML, JSON, and plain text response formats
+      - History server (WebEnv) for large result sets
+    restrictions:
+      - No bulk downloading during peak hours (weekdays 9 AM – 9 PM ET)
+      - Must include tool and email parameters for automated scripts
+      - Cannot exceed 3 requests/second from a single IP
+
+  - name: Registered API Key
+    description: Free access with an NCBI API key obtained through a free NCBI account. Raises the rate limit to 10 requests per second. Required for production applications and automated systems that need higher throughput. Higher rates available upon request for special use cases.
+    url: https://www.ncbi.nlm.nih.gov/books/NBK25497/
+    price: Free
+    priceCurrency: USD
+    rateLimits:
+      - name: Requests per Second
+        value: 10
+        unit: requests/second
+        scope: per API key
+        note: Higher rates available upon request for qualifying use cases
+    features:
+      - All Anonymous tier features
+      - Higher throughput (10 req/s default)
+      - Eligible to request even higher rate limits
+      - API key ties requests to NCBI account for monitoring
+      - Priority support eligibility
+    registration:
+      - url: https://account.ncbi.nlm.nih.gov/
+        description: Create a free NCBI account and generate an API key in account Settings
+    keyParameter: api_key
+    restrictions:
+      - API key must be included as api_key parameter in each request
+      - Must adhere to NCBI usage policies and not scrape bulk data during peak hours
+      - Commercial redistribution of data must comply with source database licenses

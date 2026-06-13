@@ -1,0 +1,66 @@
+name: PubMed / NCBI E-utilities Rate Limits
+description: Rate limits for the NCBI Entrez E-utilities APIs and PMC APIs. Limits are enforced per IP address (unauthenticated) or per API key (authenticated). NCBI may block IPs that violate usage policies.
+provider: PubMed / NCBI
+url: https://www.ncbi.nlm.nih.gov/books/NBK25497/
+rateLimits:
+
+  - name: Unauthenticated Rate Limit
+    description: Maximum requests per second from a single IP address without an API key
+    plan: Anonymous
+    value: 3
+    unit: requests/second
+    scope: per IP address
+    enforcement: IP-level blocking for sustained violations
+    notes: >
+      NCBI enforces a hard limit of 3 E-utility requests per second from any
+      single IP address without an API key. Exceeding this limit may result in
+      temporary or permanent IP blocking.
+
+  - name: Authenticated Rate Limit
+    description: Maximum requests per second per API key for registered users
+    plan: Registered API Key
+    value: 10
+    unit: requests/second
+    scope: per API key
+    enforcement: Per-key throttling; sustained violations may revoke key
+    notes: >
+      Users with a free NCBI API key can make up to 10 requests per second.
+      Higher limits are available upon request for qualifying research institutions
+      or applications. Contact NCBI support for elevated access.
+
+  - name: Bulk Download Time Window
+    description: Recommended off-peak hours for large-scale data retrieval
+    plan: All Plans
+    type: recommendation
+    window:
+      - weekends: all day
+      - weekdays: 9:00 PM to 5:00 AM Eastern Time
+    notes: >
+      NCBI strongly recommends scheduling large batch jobs and bulk downloads
+      outside of peak hours (weekdays 9 AM to 9 PM ET) to reduce load on
+      production systems. Failure to comply may result in access restrictions.
+
+  - name: Required Parameters for Automated Access
+    description: Automated scripts and applications must include tool and email parameters
+    plan: All Plans
+    type: policy
+    parameters:
+      - name: tool
+        description: Name of the application or script making requests
+        required: true (for automated access)
+      - name: email
+        description: Contact email for the developer or organization
+        required: true (for automated access)
+    notes: >
+      Including tool and email parameters allows NCBI to contact developers
+      before blocking access in case of policy violations. Omitting these
+      parameters from automated scripts increases the risk of IP blocking
+      without prior notice.
+
+enforcement:
+  - type: IP blocking
+    description: NCBI may block IPs that exceed rate limits or violate usage policies
+    contact: info@ncbi.nlm.nih.gov
+  - type: API key revocation
+    description: API keys may be revoked for sustained policy violations
+    contact: https://support.nlm.nih.gov/
