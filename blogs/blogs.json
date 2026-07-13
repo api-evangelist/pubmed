@@ -1,0 +1,21 @@
+{
+  "repo": "pubmed",
+  "feeds": [
+    {
+      "source": "https://ncbiinsights.ncbi.nlm.nih.gov/feed/",
+      "feed_url": "https://ncbiinsights.ncbi.nlm.nih.gov/feed/",
+      "title": "",
+      "saved": 0,
+      "method": "feed"
+    },
+    {
+      "source": "https://support.nlm.nih.gov/",
+      "feed_url": "https://support.nlm.nih.gov/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 12
+}
