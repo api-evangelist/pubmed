@@ -173,6 +173,8 @@ apis:
         value: PMID, PMCID, DOI, manuscript ID
 
 common:
+  - type: AgenticAccess
+    url: agentic-access/pubmed-agentic-access.yml
   - type: DomainSecurity
     url: security/pubmed-domain-security.yml
   - type: Authentication
