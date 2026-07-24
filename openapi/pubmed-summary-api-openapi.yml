@@ -1,0 +1,138 @@
+openapi: 3.1.0
+info:
+  title: NCBI Entrez E-utilities History Summary API
+  description: The Entrez Programming Utilities (E-utilities) provide a stable interface to the NCBI Entrez query and database system. Nine server-side programs allow searching, fetching, posting, linking, and summarizing records across PubMed and 38 NCBI databases including PubMed Central, Gene, Nuccore, and Protein. Supports searching 35M+ biomedical citations, retrieving abstracts, full-text links, MeSH terms, and related article metadata.
+  version: v1.0.0
+  termsOfService: https://www.ncbi.nlm.nih.gov/home/about/policies.shtml
+  contact:
+    name: NCBI Help Desk
+    url: https://support.nlm.nih.gov/
+    email: info@ncbi.nlm.nih.gov
+  license:
+    name: NCBI Data Use Policies
+    url: https://www.ncbi.nlm.nih.gov/home/about/policies.shtml
+servers:
+- url: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+  description: NCBI E-utilities production server
+tags:
+- name: Summary
+  description: Operations for retrieving document summaries
+paths:
+  /esummary.fcgi:
+    get:
+      summary: ESummary - Retrieve document summaries
+      description: Returns document summaries (DocSums) for a list of input UIDs or for a set of UIDs stored on the Entrez History server.
+      operationId: ESummary
+      tags:
+      - Summary
+      parameters:
+      - name: db
+        in: query
+        description: Database containing the UIDs (e.g., pubmed, gene, assembly).
+        required: true
+        schema:
+          type: string
+          example: pubmed
+      - name: id
+        in: query
+        description: Comma-delimited list of UIDs.
+        required: false
+        schema:
+          type: string
+          example: 36328499,36328500
+      - name: retstart
+        in: query
+        description: 'Sequential index of first DocSum to retrieve (default: 1).'
+        required: false
+        schema:
+          type: integer
+          default: 1
+      - name: retmax
+        in: query
+        description: 'Number of DocSums to retrieve (max: 10000).'
+        required: false
+        schema:
+          type: integer
+          maximum: 10000
+      - name: retmode
+        in: query
+        description: 'Response format. Values: xml (default), json.'
+        required: false
+        schema:
+          type: string
+          enum:
+          - xml
+          - json
+          default: xml
+      - name: version
+        in: query
+        description: Set to '2.0' to use version 2.0 ESummary XML with database-specific fields.
+        required: false
+        schema:
+          type: string
+          enum:
+          - '2.0'
+      - name: WebEnv
+        in: query
+        description: Web environment string from a previous ESearch, EPost, or ELink call.
+        required: false
+        schema:
+          type: string
+      - name: query_key
+        in: query
+        description: Integer query key from a previous call.
+        required: false
+        schema:
+          type: integer
+      - name: tool
+        in: query
+        description: Name of application making the call.
+        required: false
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Contact email address.
+        required: false
+        schema:
+          type: string
+          format: email
+      - name: api_key
+        in: query
+        description: API key to enable higher request rate.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Document summaries in requested format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ESummaryResult'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ESummaryResult'
+components:
+  schemas:
+    ESummaryResult:
+      type: object
+      properties:
+        result:
+          type: object
+          description: Object with UIDs as keys and document summaries as values.
+          properties:
+            uids:
+              type: array
+              items:
+                type: string
+              description: List of UIDs in the result set.
+          additionalProperties:
+            type: object
+            description: Document summary for a UID.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: api_key
+      description: 'Optional NCBI API key. Without a key: 3 requests/second. With a key: 10 requests/second. Register at https://www.ncbi.nlm.nih.gov/account/'

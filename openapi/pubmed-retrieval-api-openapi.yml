@@ -1,0 +1,126 @@
+openapi: 3.1.0
+info:
+  title: NCBI Entrez E-utilities History Retrieval API
+  description: The Entrez Programming Utilities (E-utilities) provide a stable interface to the NCBI Entrez query and database system. Nine server-side programs allow searching, fetching, posting, linking, and summarizing records across PubMed and 38 NCBI databases including PubMed Central, Gene, Nuccore, and Protein. Supports searching 35M+ biomedical citations, retrieving abstracts, full-text links, MeSH terms, and related article metadata.
+  version: v1.0.0
+  termsOfService: https://www.ncbi.nlm.nih.gov/home/about/policies.shtml
+  contact:
+    name: NCBI Help Desk
+    url: https://support.nlm.nih.gov/
+    email: info@ncbi.nlm.nih.gov
+  license:
+    name: NCBI Data Use Policies
+    url: https://www.ncbi.nlm.nih.gov/home/about/policies.shtml
+servers:
+- url: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+  description: NCBI E-utilities production server
+tags:
+- name: Retrieval
+  description: Operations for retrieving records from Entrez databases
+paths:
+  /efetch.fcgi:
+    get:
+      summary: EFetch - Retrieve full records
+      description: Retrieves full records in a specified format for a list of input UIDs from an Entrez database. Supports multiple return types and modes depending on the target database.
+      operationId: EFetch
+      tags:
+      - Retrieval
+      parameters:
+      - name: db
+        in: query
+        description: Database from which to retrieve records (e.g., pubmed, nucleotide, protein, gene).
+        required: true
+        schema:
+          type: string
+          example: pubmed
+      - name: id
+        in: query
+        description: Comma-delimited list of UIDs to retrieve.
+        required: false
+        schema:
+          type: string
+          example: 36328499,36328500
+      - name: retstart
+        in: query
+        description: 'Sequential index of the first record to retrieve (default: 0).'
+        required: false
+        schema:
+          type: integer
+          default: 0
+      - name: retmax
+        in: query
+        description: 'Number of records to retrieve (default: 20, max: 10000).'
+        required: false
+        schema:
+          type: integer
+          default: 20
+          maximum: 10000
+      - name: rettype
+        in: query
+        description: 'Retrieval type. For PubMed: abstract, medline, uilist, docsum. For sequences: fasta, gb, gp.'
+        required: false
+        schema:
+          type: string
+          example: abstract
+      - name: retmode
+        in: query
+        description: 'Retrieval mode. Values: xml, text, asn.1.'
+        required: false
+        schema:
+          type: string
+          enum:
+          - xml
+          - text
+          - asn.1
+      - name: WebEnv
+        in: query
+        description: Web environment string from a previous ESearch, EPost, or ELink call.
+        required: false
+        schema:
+          type: string
+      - name: query_key
+        in: query
+        description: Integer query key from a previous ESearch, EPost, or ELink call.
+        required: false
+        schema:
+          type: integer
+      - name: tool
+        in: query
+        description: Name of application making the call (no spaces). Recommended.
+        required: false
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Contact email address. Recommended.
+        required: false
+        schema:
+          type: string
+          format: email
+      - name: api_key
+        in: query
+        description: API key to enable up to 10 requests/second.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Full records in the requested format
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EFetchResult'
+            text/plain:
+              schema:
+                type: string
+components:
+  schemas:
+    EFetchResult:
+      type: object
+      description: Full records returned by EFetch. Structure varies by database and rettype/retmode.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: api_key
+      description: 'Optional NCBI API key. Without a key: 3 requests/second. With a key: 10 requests/second. Register at https://www.ncbi.nlm.nih.gov/account/'

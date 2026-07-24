@@ -1,0 +1,168 @@
+openapi: 3.1.0
+info:
+  title: NCBI Entrez E-utilities History Links API
+  description: The Entrez Programming Utilities (E-utilities) provide a stable interface to the NCBI Entrez query and database system. Nine server-side programs allow searching, fetching, posting, linking, and summarizing records across PubMed and 38 NCBI databases including PubMed Central, Gene, Nuccore, and Protein. Supports searching 35M+ biomedical citations, retrieving abstracts, full-text links, MeSH terms, and related article metadata.
+  version: v1.0.0
+  termsOfService: https://www.ncbi.nlm.nih.gov/home/about/policies.shtml
+  contact:
+    name: NCBI Help Desk
+    url: https://support.nlm.nih.gov/
+    email: info@ncbi.nlm.nih.gov
+  license:
+    name: NCBI Data Use Policies
+    url: https://www.ncbi.nlm.nih.gov/home/about/policies.shtml
+servers:
+- url: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+  description: NCBI E-utilities production server
+tags:
+- name: Links
+  description: Operations for finding linked records between databases
+paths:
+  /elink.fcgi:
+    get:
+      summary: ELink - Retrieve linked records
+      description: Returns UIDs linked to an input set of UIDs in either the same database or a different Entrez database. Also returns LinkOut URLs for non-Entrez external resources, and checks for the existence of links in either direction.
+      operationId: ELink
+      tags:
+      - Links
+      parameters:
+      - name: dbfrom
+        in: query
+        description: Database containing the input UIDs.
+        required: true
+        schema:
+          type: string
+          example: pubmed
+      - name: db
+        in: query
+        description: Database to search for linked records. Omit when cmd is llinks or llinkslib.
+        required: false
+        schema:
+          type: string
+          example: pmc
+      - name: id
+        in: query
+        description: Comma-delimited list of UIDs.
+        required: false
+        schema:
+          type: string
+      - name: cmd
+        in: query
+        description: ELink command mode.
+        required: true
+        schema:
+          type: string
+          enum:
+          - neighbor
+          - neighbor_score
+          - neighbor_history
+          - acheck
+          - ncheck
+          - lcheck
+          - llinks
+          - llinkslib
+          - prlinks
+          default: neighbor
+      - name: linkname
+        in: query
+        description: Name of a specific link to retrieve (e.g., pubmed_pubmed, pubmed_pmc).
+        required: false
+        schema:
+          type: string
+      - name: term
+        in: query
+        description: Entrez query to filter linked UIDs.
+        required: false
+        schema:
+          type: string
+      - name: retmode
+        in: query
+        description: Response format (xml or json).
+        required: false
+        schema:
+          type: string
+          enum:
+          - xml
+          - json
+          default: xml
+      - name: holding
+        in: query
+        description: Name of a LinkOut provider to restrict LinkOut links.
+        required: false
+        schema:
+          type: string
+      - name: datetype
+        in: query
+        description: Type of date to limit the link results.
+        required: false
+        schema:
+          type: string
+          enum:
+          - mdat
+          - pdat
+          - edat
+          - crdt
+          - mhda
+      - name: reldate
+        in: query
+        description: Limit results to items published in the last n days.
+        required: false
+        schema:
+          type: integer
+      - name: mindate
+        in: query
+        description: Minimum date for date range filter.
+        required: false
+        schema:
+          type: string
+      - name: maxdate
+        in: query
+        description: Maximum date for date range filter.
+        required: false
+        schema:
+          type: string
+      - name: WebEnv
+        in: query
+        description: Web environment string from a previous call.
+        required: false
+        schema:
+          type: string
+      - name: query_key
+        in: query
+        description: Integer query key from a previous call.
+        required: false
+        schema:
+          type: integer
+      - name: tool
+        in: query
+        description: Name of application making the call.
+        required: false
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Contact email address.
+        required: false
+        schema:
+          type: string
+          format: email
+      - name: api_key
+        in: query
+        description: API key to enable higher request rate.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Linked records or LinkOut URLs
+          content:
+            application/xml:
+              schema:
+                type: object
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: api_key
+      description: 'Optional NCBI API key. Without a key: 3 requests/second. With a key: 10 requests/second. Register at https://www.ncbi.nlm.nih.gov/account/'

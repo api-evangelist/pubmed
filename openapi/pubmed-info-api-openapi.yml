@@ -1,0 +1,153 @@
+openapi: 3.1.0
+info:
+  title: NCBI Entrez E-utilities History Info API
+  description: The Entrez Programming Utilities (E-utilities) provide a stable interface to the NCBI Entrez query and database system. Nine server-side programs allow searching, fetching, posting, linking, and summarizing records across PubMed and 38 NCBI databases including PubMed Central, Gene, Nuccore, and Protein. Supports searching 35M+ biomedical citations, retrieving abstracts, full-text links, MeSH terms, and related article metadata.
+  version: v1.0.0
+  termsOfService: https://www.ncbi.nlm.nih.gov/home/about/policies.shtml
+  contact:
+    name: NCBI Help Desk
+    url: https://support.nlm.nih.gov/
+    email: info@ncbi.nlm.nih.gov
+  license:
+    name: NCBI Data Use Policies
+    url: https://www.ncbi.nlm.nih.gov/home/about/policies.shtml
+servers:
+- url: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+  description: NCBI E-utilities production server
+tags:
+- name: Info
+  description: Operations for retrieving database metadata and information
+paths:
+  /einfo.fcgi:
+    get:
+      summary: EInfo - Get database information
+      description: Provides a list of all valid Entrez databases, or information about a single database including field names, index terms, links to other Entrez databases, and other metadata.
+      operationId: EInfo
+      tags:
+      - Info
+      parameters:
+      - name: db
+        in: query
+        description: Target database. Omit to return a list of all valid Entrez databases.
+        required: false
+        schema:
+          type: string
+          example: pubmed
+      - name: version
+        in: query
+        description: Set to '2.0' for EInfo XML version 2.0 with additional field attributes.
+        required: false
+        schema:
+          type: string
+          enum:
+          - '2.0'
+      - name: retmode
+        in: query
+        description: 'Response format. Values: xml (default), json.'
+        required: false
+        schema:
+          type: string
+          enum:
+          - xml
+          - json
+          default: xml
+      - name: tool
+        in: query
+        description: Name of application making the call.
+        required: false
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Contact email address.
+        required: false
+        schema:
+          type: string
+          format: email
+      - name: api_key
+        in: query
+        description: API key to enable higher request rate.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Database information or list of databases
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EInfoResult'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EInfoResult'
+components:
+  schemas:
+    EInfoResult:
+      type: object
+      properties:
+        einforesult:
+          type: object
+          properties:
+            dblist:
+              type: array
+              items:
+                type: string
+              description: List of all valid Entrez databases (when no db parameter).
+            dbinfo:
+              type: object
+              description: Detailed database information when db parameter is supplied.
+              properties:
+                dbname:
+                  type: string
+                menuname:
+                  type: string
+                description:
+                  type: string
+                dbbuild:
+                  type: string
+                count:
+                  type: string
+                lastupdate:
+                  type: string
+                fieldlist:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      fullname:
+                        type: string
+                      description:
+                        type: string
+                      termcount:
+                        type: string
+                      isdate:
+                        type: string
+                      isnumerical:
+                        type: string
+                      singletoken:
+                        type: string
+                      hierarchy:
+                        type: string
+                      ishidden:
+                        type: string
+                linklist:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      menu:
+                        type: string
+                      description:
+                        type: string
+                      dbto:
+                        type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: api_key
+      description: 'Optional NCBI API key. Without a key: 3 requests/second. With a key: 10 requests/second. Register at https://www.ncbi.nlm.nih.gov/account/'

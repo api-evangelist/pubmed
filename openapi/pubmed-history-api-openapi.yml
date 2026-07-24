@@ -1,0 +1,83 @@
+openapi: 3.1.0
+info:
+  title: NCBI Entrez E-utilities History API
+  description: The Entrez Programming Utilities (E-utilities) provide a stable interface to the NCBI Entrez query and database system. Nine server-side programs allow searching, fetching, posting, linking, and summarizing records across PubMed and 38 NCBI databases including PubMed Central, Gene, Nuccore, and Protein. Supports searching 35M+ biomedical citations, retrieving abstracts, full-text links, MeSH terms, and related article metadata.
+  version: v1.0.0
+  termsOfService: https://www.ncbi.nlm.nih.gov/home/about/policies.shtml
+  contact:
+    name: NCBI Help Desk
+    url: https://support.nlm.nih.gov/
+    email: info@ncbi.nlm.nih.gov
+  license:
+    name: NCBI Data Use Policies
+    url: https://www.ncbi.nlm.nih.gov/home/about/policies.shtml
+servers:
+- url: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+  description: NCBI E-utilities production server
+tags:
+- name: History
+  description: Operations for managing sets of records on the Entrez History server
+paths:
+  /epost.fcgi:
+    post:
+      summary: EPost - Upload UIDs to History server
+      description: Accepts a list of UIDs from a given database and stores them on the Entrez History server. The stored set can then be used by subsequent ESearch, ESummary, EFetch, or ELink calls.
+      operationId: EPost
+      tags:
+      - History
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - db
+              - id
+              properties:
+                db:
+                  type: string
+                  description: Database name.
+                  example: pubmed
+                id:
+                  type: string
+                  description: Comma-delimited list of UIDs.
+                  example: 36328499,36328500,36328501
+                WebEnv:
+                  type: string
+                  description: Existing web environment to append UIDs to.
+                tool:
+                  type: string
+                  description: Name of application making the call.
+                email:
+                  type: string
+                  description: Contact email address.
+                api_key:
+                  type: string
+                  description: API key to enable higher request rate.
+      responses:
+        '200':
+          description: WebEnv and query_key for use in subsequent calls
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/EPostResult'
+components:
+  schemas:
+    EPostResult:
+      type: object
+      properties:
+        epostresult:
+          type: object
+          properties:
+            querykey:
+              type: string
+              description: Integer query key for the uploaded UIDs.
+            webenv:
+              type: string
+              description: Web environment string for History server.
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: api_key
+      description: 'Optional NCBI API key. Without a key: 3 requests/second. With a key: 10 requests/second. Register at https://www.ncbi.nlm.nih.gov/account/'

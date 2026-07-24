@@ -1,0 +1,389 @@
+openapi: 3.1.0
+info:
+  title: NCBI Entrez E-utilities History Search API
+  description: The Entrez Programming Utilities (E-utilities) provide a stable interface to the NCBI Entrez query and database system. Nine server-side programs allow searching, fetching, posting, linking, and summarizing records across PubMed and 38 NCBI databases including PubMed Central, Gene, Nuccore, and Protein. Supports searching 35M+ biomedical citations, retrieving abstracts, full-text links, MeSH terms, and related article metadata.
+  version: v1.0.0
+  termsOfService: https://www.ncbi.nlm.nih.gov/home/about/policies.shtml
+  contact:
+    name: NCBI Help Desk
+    url: https://support.nlm.nih.gov/
+    email: info@ncbi.nlm.nih.gov
+  license:
+    name: NCBI Data Use Policies
+    url: https://www.ncbi.nlm.nih.gov/home/about/policies.shtml
+servers:
+- url: https://eutils.ncbi.nlm.nih.gov/entrez/eutils
+  description: NCBI E-utilities production server
+tags:
+- name: Search
+  description: Operations for searching Entrez databases
+paths:
+  /esearch.fcgi:
+    get:
+      summary: ESearch - Search a database
+      description: Performs a text query search in a single Entrez database and retrieves a list of matching UIDs (unique identifiers). Results can be stored on the Entrez History server for later use with other E-utilities.
+      operationId: ESearch
+      tags:
+      - Search
+      parameters:
+      - name: db
+        in: query
+        description: 'Database to search. Common values: pubmed, pmc, gene, nucleotide, protein, assembly, biosample.'
+        required: true
+        schema:
+          type: string
+          example: pubmed
+      - name: term
+        in: query
+        description: Entrez text query (URL encoded). Spaces may be replaced by '+' signs. Can include field tags like [Author] or [MeSH Terms].
+        required: true
+        schema:
+          type: string
+          example: cancer[MeSH Terms]
+      - name: retstart
+        in: query
+        description: 'Sequential index of the first UID in the retrieved set (default: 0).'
+        required: false
+        schema:
+          type: integer
+          default: 0
+      - name: retmax
+        in: query
+        description: 'Total number of UIDs to retrieve (default: 20, max: 100000).'
+        required: false
+        schema:
+          type: integer
+          default: 20
+          maximum: 100000
+      - name: rettype
+        in: query
+        description: 'Retrieval type. Values: uilist (default), count.'
+        required: false
+        schema:
+          type: string
+          enum:
+          - uilist
+          - count
+          default: uilist
+      - name: retmode
+        in: query
+        description: 'Response format. Values: xml (default), json.'
+        required: false
+        schema:
+          type: string
+          enum:
+          - xml
+          - json
+          default: xml
+      - name: sort
+        in: query
+        description: Sort order for results.
+        required: false
+        schema:
+          type: string
+          enum:
+          - journal
+          - pub+date
+          - most+recent
+          - relevance
+          - title
+          - author
+      - name: field
+        in: query
+        description: Limit search to specified field (e.g., Author, Title, MeSH Terms).
+        required: false
+        schema:
+          type: string
+      - name: datetype
+        in: query
+        description: 'Type of date to limit the search. Values: mdat (modification date), pdat (publication date), edat (Entrez date).'
+        required: false
+        schema:
+          type: string
+          enum:
+          - mdat
+          - pdat
+          - edat
+          - crdt
+          - mhda
+      - name: reldate
+        in: query
+        description: Limit results to items published in the last n days.
+        required: false
+        schema:
+          type: integer
+      - name: mindate
+        in: query
+        description: Minimum date for date range filter (YYYY/MM/DD, YYYY/MM, or YYYY).
+        required: false
+        schema:
+          type: string
+          example: 2020/01/01
+      - name: maxdate
+        in: query
+        description: Maximum date for date range filter (YYYY/MM/DD, YYYY/MM, or YYYY).
+        required: false
+        schema:
+          type: string
+          example: 2025/12/31
+      - name: usehistory
+        in: query
+        description: Set to 'y' to store results on the Entrez History server for use in subsequent calls.
+        required: false
+        schema:
+          type: string
+          enum:
+          - y
+      - name: WebEnv
+        in: query
+        description: Web environment string returned from a previous ESearch, EPost, or ELink call.
+        required: false
+        schema:
+          type: string
+      - name: query_key
+        in: query
+        description: Integer query key returned by a previous ESearch, EPost, or ELink call.
+        required: false
+        schema:
+          type: integer
+      - name: tool
+        in: query
+        description: Name of application making the call (no spaces). Recommended.
+        required: false
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Contact email address. Recommended for NCBI to contact in case of problems.
+        required: false
+        schema:
+          type: string
+          format: email
+      - name: api_key
+        in: query
+        description: API key to enable up to 10 requests/second (vs 3 req/s without key).
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful search response with UIDs
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ESearchResult'
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ESearchResult'
+  /espell.fcgi:
+    get:
+      summary: ESpell - Retrieve spelling suggestions
+      description: Retrieves spelling suggestions for search terms in a given Entrez database.
+      operationId: ESpell
+      tags:
+      - Search
+      parameters:
+      - name: db
+        in: query
+        description: Database to check spelling suggestions against.
+        required: true
+        schema:
+          type: string
+          example: pubmed
+      - name: term
+        in: query
+        description: Search term to check for spelling suggestions (URL encoded).
+        required: true
+        schema:
+          type: string
+          example: asthmaa
+      - name: tool
+        in: query
+        description: Name of application making the call.
+        required: false
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Contact email address.
+        required: false
+        schema:
+          type: string
+          format: email
+      - name: api_key
+        in: query
+        description: API key to enable higher request rate.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Spelling suggestions
+          content:
+            application/xml:
+              schema:
+                $ref: '#/components/schemas/ESpellResult'
+  /egquery.fcgi:
+    get:
+      summary: EGQuery - Global search across all databases
+      description: Performs a text query in all Entrez databases simultaneously and returns the number of results for the query in each database.
+      operationId: EGQuery
+      tags:
+      - Search
+      parameters:
+      - name: term
+        in: query
+        description: Entrez search query (URL encoded).
+        required: true
+        schema:
+          type: string
+          example: diabetes
+      - name: tool
+        in: query
+        description: Name of application making the call.
+        required: false
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Contact email address.
+        required: false
+        schema:
+          type: string
+          format: email
+      - name: api_key
+        in: query
+        description: API key to enable higher request rate.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Result counts across all Entrez databases
+          content:
+            application/xml:
+              schema:
+                type: object
+  /ecitmatch.cgi:
+    get:
+      summary: ECitMatch - Match citations to PubMed IDs
+      description: Retrieves PubMed IDs (PMIDs) that correspond to a set of input citation strings. Each citation string must include journal, year, volume, page, author name, and a user-assigned key.
+      operationId: ECitMatch
+      tags:
+      - Search
+      parameters:
+      - name: db
+        in: query
+        description: Only 'pubmed' is supported.
+        required: true
+        schema:
+          type: string
+          enum:
+          - pubmed
+      - name: bdata
+        in: query
+        description: 'Citation strings formatted as: journal|year|volume|page|author|key|, separated by %0D (encoded newlines).'
+        required: true
+        schema:
+          type: string
+      - name: retmode
+        in: query
+        description: Response format (xml).
+        required: false
+        schema:
+          type: string
+          enum:
+          - xml
+      - name: tool
+        in: query
+        description: Name of application making the call.
+        required: false
+        schema:
+          type: string
+      - name: email
+        in: query
+        description: Contact email address.
+        required: false
+        schema:
+          type: string
+          format: email
+      - name: api_key
+        in: query
+        description: API key to enable higher request rate.
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Citation to PMID mapping results
+          content:
+            application/xml:
+              schema:
+                type: object
+components:
+  schemas:
+    ESearchResult:
+      type: object
+      properties:
+        esearchresult:
+          type: object
+          properties:
+            count:
+              type: string
+              description: Total number of records matching the query.
+            retmax:
+              type: string
+              description: Number of UIDs returned in this response.
+            retstart:
+              type: string
+              description: Index of the first UID returned.
+            querykey:
+              type: string
+              description: Integer query key assigned on the History server.
+            webenv:
+              type: string
+              description: Web environment string for History server.
+            idlist:
+              type: array
+              items:
+                type: string
+              description: List of UIDs matching the query.
+            translationset:
+              type: array
+              items:
+                type: object
+              description: Query translation details.
+            querytranslation:
+              type: string
+              description: Entrez query translation used.
+    ESpellResult:
+      type: object
+      properties:
+        espellresult:
+          type: object
+          properties:
+            database:
+              type: string
+            query:
+              type: string
+            correctedquery:
+              type: string
+              description: Spell-corrected version of the query.
+            spelledquery:
+              type: object
+              properties:
+                replaced:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      position:
+                        type: string
+                      text:
+                        type: string
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: query
+      name: api_key
+      description: 'Optional NCBI API key. Without a key: 3 requests/second. With a key: 10 requests/second. Register at https://www.ncbi.nlm.nih.gov/account/'
