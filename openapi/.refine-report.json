@@ -1,0 +1,24 @@
+{
+  "provider": "pubmed",
+  "sources": [
+    "pubmed-history-api-openapi.yml",
+    "pubmed-info-api-openapi.yml",
+    "pubmed-links-api-openapi.yml",
+    "pubmed-retrieval-api-openapi.yml",
+    "pubmed-search-api-openapi.yml",
+    "pubmed-summary-api-openapi.yml"
+  ],
+  "outputs": [
+    "pubmed-history-api-openapi.yml",
+    "pubmed-info-api-openapi.yml",
+    "pubmed-links-api-openapi.yml",
+    "pubmed-retrieval-api-openapi.yml",
+    "pubmed-search-api-openapi.yml",
+    "pubmed-summary-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
