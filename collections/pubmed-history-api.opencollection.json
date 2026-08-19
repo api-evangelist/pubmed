@@ -1,0 +1,58 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NCBI Entrez E-utilities History API",
+    "version": "v1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "History",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "EPost - Upload UIDs to History server",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/epost.fcgi",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "db",
+                  "value": ""
+                },
+                {
+                  "name": "id",
+                  "value": ""
+                },
+                {
+                  "name": "WebEnv",
+                  "value": ""
+                },
+                {
+                  "name": "tool",
+                  "value": ""
+                },
+                {
+                  "name": "email",
+                  "value": ""
+                },
+                {
+                  "name": "api_key",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Accepts a list of UIDs from a given database and stores them on the Entrez History server. The stored set can then be used by subsequent ESearch, ESummary, EFetch, or ELink calls."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

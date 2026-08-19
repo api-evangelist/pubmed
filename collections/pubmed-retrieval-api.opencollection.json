@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NCBI Entrez E-utilities History Retrieval API",
+    "version": "v1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Retrieval",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "EFetch - Retrieve full records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi",
+            "params": [
+              {
+                "name": "db",
+                "value": "",
+                "type": "query",
+                "description": "Database from which to retrieve records (e.g., pubmed, nucleotide, protein, gene)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Comma-delimited list of UIDs to retrieve."
+              },
+              {
+                "name": "retstart",
+                "value": "",
+                "type": "query",
+                "description": "Sequential index of the first record to retrieve (default: 0)."
+              },
+              {
+                "name": "retmax",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to retrieve (default: 20, max: 10000)."
+              },
+              {
+                "name": "rettype",
+                "value": "",
+                "type": "query",
+                "description": "Retrieval type. For PubMed: abstract, medline, uilist, docsum. For sequences: fasta, gb, gp."
+              },
+              {
+                "name": "retmode",
+                "value": "",
+                "type": "query",
+                "description": "Retrieval mode. Values: xml, text, asn.1."
+              },
+              {
+                "name": "WebEnv",
+                "value": "",
+                "type": "query",
+                "description": "Web environment string from a previous ESearch, EPost, or ELink call."
+              },
+              {
+                "name": "query_key",
+                "value": "",
+                "type": "query",
+                "description": "Integer query key from a previous ESearch, EPost, or ELink call."
+              },
+              {
+                "name": "tool",
+                "value": "",
+                "type": "query",
+                "description": "Name of application making the call (no spaces). Recommended."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Contact email address. Recommended."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key to enable up to 10 requests/second."
+              }
+            ]
+          },
+          "docs": "Retrieves full records in a specified format for a list of input UIDs from an Entrez database. Supports multiple return types and modes depending on the target database."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

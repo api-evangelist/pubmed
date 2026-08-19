@@ -1,0 +1,650 @@
+{
+  "item": [
+    {
+      "id": "1df4f9bd-1a52-4960-9dde-61b4b06b97fe",
+      "name": "Search",
+      "description": {
+        "content": "Operations for searching Entrez databases",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be75d90f-9787-4984-9f91-91b3fceb5012",
+          "name": "ESearch - Search a database",
+          "request": {
+            "name": "ESearch - Search a database",
+            "description": {
+              "content": "Performs a text query search in a single Entrez database and retrieves a list of matching UIDs (unique identifiers). Results can be stored on the Entrez History server for later use with other E-utilities.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "esearch.fcgi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "db",
+                  "value": "<string>",
+                  "description": "(Required) Database to search. Common values: pubmed, pmc, gene, nucleotide, protein, assembly, biosample."
+                },
+                {
+                  "disabled": false,
+                  "key": "term",
+                  "value": "<string>",
+                  "description": "(Required) Entrez text query (URL encoded). Spaces may be replaced by '+' signs. Can include field tags like [Author] or [MeSH Terms]."
+                },
+                {
+                  "disabled": false,
+                  "key": "retstart",
+                  "value": "0",
+                  "description": "Sequential index of the first UID in the retrieved set (default: 0)."
+                },
+                {
+                  "disabled": false,
+                  "key": "retmax",
+                  "value": "20",
+                  "description": "Total number of UIDs to retrieve (default: 20, max: 100000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "rettype",
+                  "value": "uilist",
+                  "description": "Retrieval type. Values: uilist (default), count."
+                },
+                {
+                  "disabled": false,
+                  "key": "retmode",
+                  "value": "xml",
+                  "description": "Response format. Values: xml (default), json."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Sort order for results."
+                },
+                {
+                  "disabled": false,
+                  "key": "field",
+                  "value": "<string>",
+                  "description": "Limit search to specified field (e.g., Author, Title, MeSH Terms)."
+                },
+                {
+                  "disabled": false,
+                  "key": "datetype",
+                  "value": "<string>",
+                  "description": "Type of date to limit the search. Values: mdat (modification date), pdat (publication date), edat (Entrez date)."
+                },
+                {
+                  "disabled": false,
+                  "key": "reldate",
+                  "value": "<integer>",
+                  "description": "Limit results to items published in the last n days."
+                },
+                {
+                  "disabled": false,
+                  "key": "mindate",
+                  "value": "<string>",
+                  "description": "Minimum date for date range filter (YYYY/MM/DD, YYYY/MM, or YYYY)."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxdate",
+                  "value": "<string>",
+                  "description": "Maximum date for date range filter (YYYY/MM/DD, YYYY/MM, or YYYY)."
+                },
+                {
+                  "disabled": false,
+                  "key": "usehistory",
+                  "value": "<string>",
+                  "description": "Set to 'y' to store results on the Entrez History server for use in subsequent calls."
+                },
+                {
+                  "disabled": false,
+                  "key": "WebEnv",
+                  "value": "<string>",
+                  "description": "Web environment string returned from a previous ESearch, EPost, or ELink call."
+                },
+                {
+                  "disabled": false,
+                  "key": "query_key",
+                  "value": "<integer>",
+                  "description": "Integer query key returned by a previous ESearch, EPost, or ELink call."
+                },
+                {
+                  "disabled": false,
+                  "key": "tool",
+                  "value": "<string>",
+                  "description": "Name of application making the call (no spaces). Recommended."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Contact email address. Recommended for NCBI to contact in case of problems."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "API key to enable up to 10 requests/second (vs 3 req/s without key)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b3492442-91ee-4c2e-ac72-9c3d84971d6a",
+              "name": "Successful search response with UIDs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "esearch.fcgi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "db",
+                      "value": "pubmed"
+                    },
+                    {
+                      "key": "term",
+                      "value": "cancer[MeSH Terms]"
+                    },
+                    {
+                      "key": "retstart",
+                      "value": "0"
+                    },
+                    {
+                      "key": "retmax",
+                      "value": "20"
+                    },
+                    {
+                      "key": "rettype",
+                      "value": "uilist"
+                    },
+                    {
+                      "key": "retmode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "datetype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reldate",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mindate",
+                      "value": "2020/01/01"
+                    },
+                    {
+                      "key": "maxdate",
+                      "value": "2025/12/31"
+                    },
+                    {
+                      "key": "usehistory",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "WebEnv",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query_key",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tool",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"esearchresult\": {\n    \"count\": \"string\",\n    \"retmax\": \"string\",\n    \"retstart\": \"string\",\n    \"querykey\": \"string\",\n    \"webenv\": \"string\",\n    \"idlist\": [\n      \"string\",\n      \"string\"\n    ],\n    \"querytranslation\": \"string\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a84f9690-bff8-4cc3-873c-affa06e8bc74",
+          "name": "ESpell - Retrieve spelling suggestions",
+          "request": {
+            "name": "ESpell - Retrieve spelling suggestions",
+            "description": {
+              "content": "Retrieves spelling suggestions for search terms in a given Entrez database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "espell.fcgi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "db",
+                  "value": "<string>",
+                  "description": "(Required) Database to check spelling suggestions against."
+                },
+                {
+                  "disabled": false,
+                  "key": "term",
+                  "value": "<string>",
+                  "description": "(Required) Search term to check for spelling suggestions (URL encoded)."
+                },
+                {
+                  "disabled": false,
+                  "key": "tool",
+                  "value": "<string>",
+                  "description": "Name of application making the call."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Contact email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "API key to enable higher request rate."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8e4d9359-a361-416f-849b-e2013152a93c",
+              "name": "Spelling suggestions",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "espell.fcgi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "db",
+                      "value": "pubmed"
+                    },
+                    {
+                      "key": "term",
+                      "value": "asthmaa"
+                    },
+                    {
+                      "key": "tool",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <espellresult>\n    <database>(string)</database>\n    <query>(string)</query>\n    <correctedquery>(string)</correctedquery>\n    <spelledquery>\n      <replaced>\n        <position>(string)</position>\n        <text>(string)</text>\n      </replaced>\n      <replaced>\n        <position>(string)</position>\n        <text>(string)</text>\n      </replaced>\n    </spelledquery>\n  </espellresult>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "19d790d2-b851-4e3c-ad64-e1666b212f28",
+          "name": "EGQuery - Global search across all databases",
+          "request": {
+            "name": "EGQuery - Global search across all databases",
+            "description": {
+              "content": "Performs a text query in all Entrez databases simultaneously and returns the number of results for the query in each database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "egquery.fcgi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "term",
+                  "value": "<string>",
+                  "description": "(Required) Entrez search query (URL encoded)."
+                },
+                {
+                  "disabled": false,
+                  "key": "tool",
+                  "value": "<string>",
+                  "description": "Name of application making the call."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Contact email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "API key to enable higher request rate."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aaea863b-eb59-4ae5-b5bf-4a6bacb80023",
+              "name": "Result counts across all Entrez databases",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "egquery.fcgi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "term",
+                      "value": "diabetes"
+                    },
+                    {
+                      "key": "tool",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1fb11d24-a82a-4e04-bb23-a80d815e33ee",
+          "name": "ECitMatch - Match citations to PubMed IDs",
+          "request": {
+            "name": "ECitMatch - Match citations to PubMed IDs",
+            "description": {
+              "content": "Retrieves PubMed IDs (PMIDs) that correspond to a set of input citation strings. Each citation string must include journal, year, volume, page, author name, and a user-assigned key.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "ecitmatch.cgi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "db",
+                  "value": "<string>",
+                  "description": "(Required) Only 'pubmed' is supported."
+                },
+                {
+                  "disabled": false,
+                  "key": "bdata",
+                  "value": "<string>",
+                  "description": "(Required) Citation strings formatted as: journal|year|volume|page|author|key|, separated by %0D (encoded newlines)."
+                },
+                {
+                  "disabled": false,
+                  "key": "retmode",
+                  "value": "<string>",
+                  "description": "Response format (xml)."
+                },
+                {
+                  "disabled": false,
+                  "key": "tool",
+                  "value": "<string>",
+                  "description": "Name of application making the call."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Contact email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "API key to enable higher request rate."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "04c2b6ec-6e4f-45b1-8c97-f42f89e739c0",
+              "name": "Citation to PMID mapping results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "ecitmatch.cgi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "db",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "bdata",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "retmode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "tool",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "c4b47529-c478-48d4-9f37-c46c6527a6b4",
+    "name": "NCBI Entrez E-utilities History Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Entrez Programming Utilities (E-utilities) provide a stable interface to the NCBI Entrez query and database system. Nine server-side programs allow searching, fetching, posting, linking, and summarizing records across PubMed and 38 NCBI databases including PubMed Central, Gene, Nuccore, and Protein. Supports searching 35M+ biomedical citations, retrieving abstracts, full-text links, MeSH terms, and related article metadata.\n\nContact Support:\n Name: NCBI Help Desk\n Email: info@ncbi.nlm.nih.gov",
+      "type": "text/plain"
+    }
+  }
+}

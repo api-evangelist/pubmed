@@ -1,0 +1,133 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NCBI Entrez E-utilities History Links API",
+    "version": "v1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Links",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ELink - Retrieve linked records",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/elink.fcgi",
+            "params": [
+              {
+                "name": "dbfrom",
+                "value": "",
+                "type": "query",
+                "description": "Database containing the input UIDs."
+              },
+              {
+                "name": "db",
+                "value": "",
+                "type": "query",
+                "description": "Database to search for linked records. Omit when cmd is llinks or llinkslib."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Comma-delimited list of UIDs."
+              },
+              {
+                "name": "cmd",
+                "value": "",
+                "type": "query",
+                "description": "ELink command mode."
+              },
+              {
+                "name": "linkname",
+                "value": "",
+                "type": "query",
+                "description": "Name of a specific link to retrieve (e.g., pubmed_pubmed, pubmed_pmc)."
+              },
+              {
+                "name": "term",
+                "value": "",
+                "type": "query",
+                "description": "Entrez query to filter linked UIDs."
+              },
+              {
+                "name": "retmode",
+                "value": "",
+                "type": "query",
+                "description": "Response format (xml or json)."
+              },
+              {
+                "name": "holding",
+                "value": "",
+                "type": "query",
+                "description": "Name of a LinkOut provider to restrict LinkOut links."
+              },
+              {
+                "name": "datetype",
+                "value": "",
+                "type": "query",
+                "description": "Type of date to limit the link results."
+              },
+              {
+                "name": "reldate",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to items published in the last n days."
+              },
+              {
+                "name": "mindate",
+                "value": "",
+                "type": "query",
+                "description": "Minimum date for date range filter."
+              },
+              {
+                "name": "maxdate",
+                "value": "",
+                "type": "query",
+                "description": "Maximum date for date range filter."
+              },
+              {
+                "name": "WebEnv",
+                "value": "",
+                "type": "query",
+                "description": "Web environment string from a previous call."
+              },
+              {
+                "name": "query_key",
+                "value": "",
+                "type": "query",
+                "description": "Integer query key from a previous call."
+              },
+              {
+                "name": "tool",
+                "value": "",
+                "type": "query",
+                "description": "Name of application making the call."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Contact email address."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key to enable higher request rate."
+              }
+            ]
+          },
+          "docs": "Returns UIDs linked to an input set of UIDs in either the same database or a different Entrez database. Also returns LinkOut URLs for non-Entrez external resources, and checks for the existence of links in either direction."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

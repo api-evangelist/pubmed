@@ -1,0 +1,214 @@
+{
+  "item": [
+    {
+      "id": "d64bc02b-c492-4c21-8be9-e890f8b07854",
+      "name": "Retrieval",
+      "description": {
+        "content": "Operations for retrieving records from Entrez databases",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0995b638-1863-4e13-bffc-f51dbe2ec321",
+          "name": "EFetch - Retrieve full records",
+          "request": {
+            "name": "EFetch - Retrieve full records",
+            "description": {
+              "content": "Retrieves full records in a specified format for a list of input UIDs from an Entrez database. Supports multiple return types and modes depending on the target database.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "efetch.fcgi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "db",
+                  "value": "<string>",
+                  "description": "(Required) Database from which to retrieve records (e.g., pubmed, nucleotide, protein, gene)."
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Comma-delimited list of UIDs to retrieve."
+                },
+                {
+                  "disabled": false,
+                  "key": "retstart",
+                  "value": "0",
+                  "description": "Sequential index of the first record to retrieve (default: 0)."
+                },
+                {
+                  "disabled": false,
+                  "key": "retmax",
+                  "value": "20",
+                  "description": "Number of records to retrieve (default: 20, max: 10000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "rettype",
+                  "value": "<string>",
+                  "description": "Retrieval type. For PubMed: abstract, medline, uilist, docsum. For sequences: fasta, gb, gp."
+                },
+                {
+                  "disabled": false,
+                  "key": "retmode",
+                  "value": "<string>",
+                  "description": "Retrieval mode. Values: xml, text, asn.1."
+                },
+                {
+                  "disabled": false,
+                  "key": "WebEnv",
+                  "value": "<string>",
+                  "description": "Web environment string from a previous ESearch, EPost, or ELink call."
+                },
+                {
+                  "disabled": false,
+                  "key": "query_key",
+                  "value": "<integer>",
+                  "description": "Integer query key from a previous ESearch, EPost, or ELink call."
+                },
+                {
+                  "disabled": false,
+                  "key": "tool",
+                  "value": "<string>",
+                  "description": "Name of application making the call (no spaces). Recommended."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Contact email address. Recommended."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "API key to enable up to 10 requests/second."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a4c92e0-0946-4048-91dc-d27481cbfc50",
+              "name": "Full records in the requested format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "efetch.fcgi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "db",
+                      "value": "pubmed"
+                    },
+                    {
+                      "key": "id",
+                      "value": "36328499,36328500"
+                    },
+                    {
+                      "key": "retstart",
+                      "value": "0"
+                    },
+                    {
+                      "key": "retmax",
+                      "value": "20"
+                    },
+                    {
+                      "key": "rettype",
+                      "value": "abstract"
+                    },
+                    {
+                      "key": "retmode",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "WebEnv",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query_key",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tool",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "2c9b70ea-a431-4b8f-942f-d5730073687a",
+    "name": "NCBI Entrez E-utilities History Retrieval API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Entrez Programming Utilities (E-utilities) provide a stable interface to the NCBI Entrez query and database system. Nine server-side programs allow searching, fetching, posting, linking, and summarizing records across PubMed and 38 NCBI databases including PubMed Central, Gene, Nuccore, and Protein. Supports searching 35M+ biomedical citations, retrieving abstracts, full-text links, MeSH terms, and related article metadata.\n\nContact Support:\n Name: NCBI Help Desk\n Email: info@ncbi.nlm.nih.gov",
+      "type": "text/plain"
+    }
+  }
+}

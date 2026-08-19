@@ -1,0 +1,164 @@
+{
+  "item": [
+    {
+      "id": "1b7326c5-5d80-4ba5-b469-5a3f5da3c8d4",
+      "name": "Info",
+      "description": {
+        "content": "Operations for retrieving database metadata and information",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a41ced71-f06d-44a5-953c-0d5d1a2c357c",
+          "name": "EInfo - Get database information",
+          "request": {
+            "name": "EInfo - Get database information",
+            "description": {
+              "content": "Provides a list of all valid Entrez databases, or information about a single database including field names, index terms, links to other Entrez databases, and other metadata.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "einfo.fcgi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "db",
+                  "value": "<string>",
+                  "description": "Target database. Omit to return a list of all valid Entrez databases."
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "Set to '2.0' for EInfo XML version 2.0 with additional field attributes."
+                },
+                {
+                  "disabled": false,
+                  "key": "retmode",
+                  "value": "xml",
+                  "description": "Response format. Values: xml (default), json."
+                },
+                {
+                  "disabled": false,
+                  "key": "tool",
+                  "value": "<string>",
+                  "description": "Name of application making the call."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Contact email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "API key to enable higher request rate."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "38fb502f-ef65-43c5-b195-130d53a0b984",
+              "name": "Database information or list of databases",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "einfo.fcgi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "db",
+                      "value": "pubmed"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "retmode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "tool",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"einforesult\": {\n    \"dblist\": [\n      \"string\",\n      \"string\"\n    ],\n    \"dbinfo\": {\n      \"dbname\": \"string\",\n      \"menuname\": \"string\",\n      \"description\": \"string\",\n      \"dbbuild\": \"string\",\n      \"count\": \"string\",\n      \"lastupdate\": \"string\",\n      \"fieldlist\": [\n        {\n          \"name\": \"string\",\n          \"fullname\": \"string\",\n          \"description\": \"string\",\n          \"termcount\": \"string\",\n          \"isdate\": \"string\",\n          \"isnumerical\": \"string\",\n          \"singletoken\": \"string\",\n          \"hierarchy\": \"string\",\n          \"ishidden\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"fullname\": \"string\",\n          \"description\": \"string\",\n          \"termcount\": \"string\",\n          \"isdate\": \"string\",\n          \"isnumerical\": \"string\",\n          \"singletoken\": \"string\",\n          \"hierarchy\": \"string\",\n          \"ishidden\": \"string\"\n        }\n      ],\n      \"linklist\": [\n        {\n          \"name\": \"string\",\n          \"menu\": \"string\",\n          \"description\": \"string\",\n          \"dbto\": \"string\"\n        },\n        {\n          \"name\": \"string\",\n          \"menu\": \"string\",\n          \"description\": \"string\",\n          \"dbto\": \"string\"\n        }\n      ]\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "b9068826-5cab-4bb5-afef-4a486c79b3ff",
+    "name": "NCBI Entrez E-utilities History Info API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Entrez Programming Utilities (E-utilities) provide a stable interface to the NCBI Entrez query and database system. Nine server-side programs allow searching, fetching, posting, linking, and summarizing records across PubMed and 38 NCBI databases including PubMed Central, Gene, Nuccore, and Protein. Supports searching 35M+ biomedical citations, retrieving abstracts, full-text links, MeSH terms, and related article metadata.\n\nContact Support:\n Name: NCBI Help Desk\n Email: info@ncbi.nlm.nih.gov",
+      "type": "text/plain"
+    }
+  }
+}

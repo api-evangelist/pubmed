@@ -1,0 +1,205 @@
+{
+  "item": [
+    {
+      "id": "0dcb9b77-4ae3-4483-b863-b9eb6b0faa28",
+      "name": "History",
+      "description": {
+        "content": "Operations for managing sets of records on the Entrez History server",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5c7021d2-ad01-4b21-b104-55ce2ead78e0",
+          "name": "EPost - Upload UIDs to History server",
+          "request": {
+            "name": "EPost - Upload UIDs to History server",
+            "description": {
+              "content": "Accepts a list of UIDs from a given database and stores them on the Entrez History server. The stored set can then be used by subsequent ESearch, ESummary, EFetch, or ELink calls.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "epost.fcgi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/x-www-form-urlencoded"
+              },
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "disabled": false,
+                  "key": "db",
+                  "value": "<string>",
+                  "description": "(Required) Database name."
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) Comma-delimited list of UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "WebEnv",
+                  "value": "<string>",
+                  "description": "Existing web environment to append UIDs to."
+                },
+                {
+                  "disabled": false,
+                  "key": "tool",
+                  "value": "<string>",
+                  "description": "Name of application making the call."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<string>",
+                  "description": "Contact email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "API key to enable higher request rate."
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "a6bcca7b-2d97-47a9-b47c-e9c33750ae34",
+              "name": "WebEnv and query_key for use in subsequent calls",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "epost.fcgi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "urlencoded",
+                  "urlencoded": [
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Database name.",
+                        "type": "text/plain"
+                      },
+                      "key": "db",
+                      "value": "pubmed"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "(Required) Comma-delimited list of UIDs.",
+                        "type": "text/plain"
+                      },
+                      "key": "id",
+                      "value": "36328499,36328500,36328501"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Existing web environment to append UIDs to.",
+                        "type": "text/plain"
+                      },
+                      "key": "WebEnv",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Name of application making the call.",
+                        "type": "text/plain"
+                      },
+                      "key": "tool",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "Contact email address.",
+                        "type": "text/plain"
+                      },
+                      "key": "email",
+                      "value": "<string>"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "API key to enable higher request rate.",
+                        "type": "text/plain"
+                      },
+                      "key": "api_key",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n  <epostresult>\n    <querykey>(string)</querykey>\n    <webenv>(string)</webenv>\n  </epostresult>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a34f3da1-3966-4e1c-999b-0c3919529a08",
+    "name": "NCBI Entrez E-utilities History API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Entrez Programming Utilities (E-utilities) provide a stable interface to the NCBI Entrez query and database system. Nine server-side programs allow searching, fetching, posting, linking, and summarizing records across PubMed and 38 NCBI databases including PubMed Central, Gene, Nuccore, and Protein. Supports searching 35M+ biomedical citations, retrieving abstracts, full-text links, MeSH terms, and related article metadata.\n\nContact Support:\n Name: NCBI Help Desk\n Email: info@ncbi.nlm.nih.gov",
+      "type": "text/plain"
+    }
+  }
+}

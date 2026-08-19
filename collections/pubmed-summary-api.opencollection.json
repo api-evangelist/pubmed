@@ -1,0 +1,97 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NCBI Entrez E-utilities History Summary API",
+    "version": "v1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Summary",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ESummary - Retrieve document summaries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi",
+            "params": [
+              {
+                "name": "db",
+                "value": "",
+                "type": "query",
+                "description": "Database containing the UIDs (e.g., pubmed, gene, assembly)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "Comma-delimited list of UIDs."
+              },
+              {
+                "name": "retstart",
+                "value": "",
+                "type": "query",
+                "description": "Sequential index of first DocSum to retrieve (default: 1)."
+              },
+              {
+                "name": "retmax",
+                "value": "",
+                "type": "query",
+                "description": "Number of DocSums to retrieve (max: 10000)."
+              },
+              {
+                "name": "retmode",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Values: xml (default), json."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Set to '2.0' to use version 2.0 ESummary XML with database-specific fields."
+              },
+              {
+                "name": "WebEnv",
+                "value": "",
+                "type": "query",
+                "description": "Web environment string from a previous ESearch, EPost, or ELink call."
+              },
+              {
+                "name": "query_key",
+                "value": "",
+                "type": "query",
+                "description": "Integer query key from a previous call."
+              },
+              {
+                "name": "tool",
+                "value": "",
+                "type": "query",
+                "description": "Name of application making the call."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Contact email address."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key to enable higher request rate."
+              }
+            ]
+          },
+          "docs": "Returns document summaries (DocSums) for a list of input UIDs or for a set of UIDs stored on the Entrez History server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

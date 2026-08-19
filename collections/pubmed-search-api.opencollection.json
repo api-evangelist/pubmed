@@ -1,0 +1,268 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NCBI Entrez E-utilities History Search API",
+    "version": "v1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "ESearch - Search a database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi",
+            "params": [
+              {
+                "name": "db",
+                "value": "",
+                "type": "query",
+                "description": "Database to search. Common values: pubmed, pmc, gene, nucleotide, protein, assembly, biosample."
+              },
+              {
+                "name": "term",
+                "value": "",
+                "type": "query",
+                "description": "Entrez text query (URL encoded). Spaces may be replaced by '+' signs. Can include field tags like [Author] or [MeSH Terms]."
+              },
+              {
+                "name": "retstart",
+                "value": "",
+                "type": "query",
+                "description": "Sequential index of the first UID in the retrieved set (default: 0)."
+              },
+              {
+                "name": "retmax",
+                "value": "",
+                "type": "query",
+                "description": "Total number of UIDs to retrieve (default: 20, max: 100000)."
+              },
+              {
+                "name": "rettype",
+                "value": "",
+                "type": "query",
+                "description": "Retrieval type. Values: uilist (default), count."
+              },
+              {
+                "name": "retmode",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Values: xml (default), json."
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort order for results."
+              },
+              {
+                "name": "field",
+                "value": "",
+                "type": "query",
+                "description": "Limit search to specified field (e.g., Author, Title, MeSH Terms)."
+              },
+              {
+                "name": "datetype",
+                "value": "",
+                "type": "query",
+                "description": "Type of date to limit the search. Values: mdat (modification date), pdat (publication date), edat (Entrez date)."
+              },
+              {
+                "name": "reldate",
+                "value": "",
+                "type": "query",
+                "description": "Limit results to items published in the last n days."
+              },
+              {
+                "name": "mindate",
+                "value": "",
+                "type": "query",
+                "description": "Minimum date for date range filter (YYYY/MM/DD, YYYY/MM, or YYYY)."
+              },
+              {
+                "name": "maxdate",
+                "value": "",
+                "type": "query",
+                "description": "Maximum date for date range filter (YYYY/MM/DD, YYYY/MM, or YYYY)."
+              },
+              {
+                "name": "usehistory",
+                "value": "",
+                "type": "query",
+                "description": "Set to 'y' to store results on the Entrez History server for use in subsequent calls."
+              },
+              {
+                "name": "WebEnv",
+                "value": "",
+                "type": "query",
+                "description": "Web environment string returned from a previous ESearch, EPost, or ELink call."
+              },
+              {
+                "name": "query_key",
+                "value": "",
+                "type": "query",
+                "description": "Integer query key returned by a previous ESearch, EPost, or ELink call."
+              },
+              {
+                "name": "tool",
+                "value": "",
+                "type": "query",
+                "description": "Name of application making the call (no spaces). Recommended."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Contact email address. Recommended for NCBI to contact in case of problems."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key to enable up to 10 requests/second (vs 3 req/s without key)."
+              }
+            ]
+          },
+          "docs": "Performs a text query search in a single Entrez database and retrieves a list of matching UIDs (unique identifiers). Results can be stored on the Entrez History server for later use with other E-utilities."
+        },
+        {
+          "info": {
+            "name": "ESpell - Retrieve spelling suggestions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/espell.fcgi",
+            "params": [
+              {
+                "name": "db",
+                "value": "",
+                "type": "query",
+                "description": "Database to check spelling suggestions against."
+              },
+              {
+                "name": "term",
+                "value": "",
+                "type": "query",
+                "description": "Search term to check for spelling suggestions (URL encoded)."
+              },
+              {
+                "name": "tool",
+                "value": "",
+                "type": "query",
+                "description": "Name of application making the call."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Contact email address."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key to enable higher request rate."
+              }
+            ]
+          },
+          "docs": "Retrieves spelling suggestions for search terms in a given Entrez database."
+        },
+        {
+          "info": {
+            "name": "EGQuery - Global search across all databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/egquery.fcgi",
+            "params": [
+              {
+                "name": "term",
+                "value": "",
+                "type": "query",
+                "description": "Entrez search query (URL encoded)."
+              },
+              {
+                "name": "tool",
+                "value": "",
+                "type": "query",
+                "description": "Name of application making the call."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Contact email address."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key to enable higher request rate."
+              }
+            ]
+          },
+          "docs": "Performs a text query in all Entrez databases simultaneously and returns the number of results for the query in each database."
+        },
+        {
+          "info": {
+            "name": "ECitMatch - Match citations to PubMed IDs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/ecitmatch.cgi",
+            "params": [
+              {
+                "name": "db",
+                "value": "",
+                "type": "query",
+                "description": "Only 'pubmed' is supported."
+              },
+              {
+                "name": "bdata",
+                "value": "",
+                "type": "query",
+                "description": "Citation strings formatted as: journal|year|volume|page|author|key|, separated by %0D (encoded newlines)."
+              },
+              {
+                "name": "retmode",
+                "value": "",
+                "type": "query",
+                "description": "Response format (xml)."
+              },
+              {
+                "name": "tool",
+                "value": "",
+                "type": "query",
+                "description": "Name of application making the call."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Contact email address."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key to enable higher request rate."
+              }
+            ]
+          },
+          "docs": "Retrieves PubMed IDs (PMIDs) that correspond to a set of input citation strings. Each citation string must include journal, year, volume, page, author name, and a user-assigned key."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

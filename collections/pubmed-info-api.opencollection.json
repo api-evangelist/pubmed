@@ -1,0 +1,67 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "NCBI Entrez E-utilities History Info API",
+    "version": "v1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Info",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "EInfo - Get database information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/einfo.fcgi",
+            "params": [
+              {
+                "name": "db",
+                "value": "",
+                "type": "query",
+                "description": "Target database. Omit to return a list of all valid Entrez databases."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "Set to '2.0' for EInfo XML version 2.0 with additional field attributes."
+              },
+              {
+                "name": "retmode",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Values: xml (default), json."
+              },
+              {
+                "name": "tool",
+                "value": "",
+                "type": "query",
+                "description": "Name of application making the call."
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "Contact email address."
+              },
+              {
+                "name": "api_key",
+                "value": "",
+                "type": "query",
+                "description": "API key to enable higher request rate."
+              }
+            ]
+          },
+          "docs": "Provides a list of all valid Entrez databases, or information about a single database including field names, index terms, links to other Entrez databases, and other metadata."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

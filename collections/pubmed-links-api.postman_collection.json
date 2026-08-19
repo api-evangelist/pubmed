@@ -1,0 +1,274 @@
+{
+  "item": [
+    {
+      "id": "efe9f48c-d5a3-474e-bd02-4d0de71a9cf0",
+      "name": "Links",
+      "description": {
+        "content": "Operations for finding linked records between databases",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "acb98f4f-35dc-4fdb-99a2-dd6e701b40e7",
+          "name": "ELink - Retrieve linked records",
+          "request": {
+            "name": "ELink - Retrieve linked records",
+            "description": {
+              "content": "Returns UIDs linked to an input set of UIDs in either the same database or a different Entrez database. Also returns LinkOut URLs for non-Entrez external resources, and checks for the existence of links in either direction.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "elink.fcgi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "dbfrom",
+                  "value": "<string>",
+                  "description": "(Required) Database containing the input UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "db",
+                  "value": "<string>",
+                  "description": "Database to search for linked records. Omit when cmd is llinks or llinkslib."
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Comma-delimited list of UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "cmd",
+                  "value": "neighbor",
+                  "description": "(Required) ELink command mode."
+                },
+                {
+                  "disabled": false,
+                  "key": "linkname",
+                  "value": "<string>",
+                  "description": "Name of a specific link to retrieve (e.g., pubmed_pubmed, pubmed_pmc)."
+                },
+                {
+                  "disabled": false,
+                  "key": "term",
+                  "value": "<string>",
+                  "description": "Entrez query to filter linked UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "retmode",
+                  "value": "xml",
+                  "description": "Response format (xml or json)."
+                },
+                {
+                  "disabled": false,
+                  "key": "holding",
+                  "value": "<string>",
+                  "description": "Name of a LinkOut provider to restrict LinkOut links."
+                },
+                {
+                  "disabled": false,
+                  "key": "datetype",
+                  "value": "<string>",
+                  "description": "Type of date to limit the link results."
+                },
+                {
+                  "disabled": false,
+                  "key": "reldate",
+                  "value": "<integer>",
+                  "description": "Limit results to items published in the last n days."
+                },
+                {
+                  "disabled": false,
+                  "key": "mindate",
+                  "value": "<string>",
+                  "description": "Minimum date for date range filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "maxdate",
+                  "value": "<string>",
+                  "description": "Maximum date for date range filter."
+                },
+                {
+                  "disabled": false,
+                  "key": "WebEnv",
+                  "value": "<string>",
+                  "description": "Web environment string from a previous call."
+                },
+                {
+                  "disabled": false,
+                  "key": "query_key",
+                  "value": "<integer>",
+                  "description": "Integer query key from a previous call."
+                },
+                {
+                  "disabled": false,
+                  "key": "tool",
+                  "value": "<string>",
+                  "description": "Name of application making the call."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Contact email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "API key to enable higher request rate."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/xml"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "47c5b847-7067-4c55-a981-f6e23056b652",
+              "name": "Linked records or LinkOut URLs",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "elink.fcgi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "dbfrom",
+                      "value": "pubmed"
+                    },
+                    {
+                      "key": "db",
+                      "value": "pmc"
+                    },
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "cmd",
+                      "value": "neighbor"
+                    },
+                    {
+                      "key": "linkname",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "term",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "retmode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "holding",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "datetype",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "reldate",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "mindate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "maxdate",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "WebEnv",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query_key",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tool",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/xml"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/xml"
+                }
+              ],
+              "body": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<element>\n</element>",
+              "cookie": [],
+              "_postman_previewlanguage": "xml"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "5165a7ae-b807-45ef-878d-a926f474dcc6",
+    "name": "NCBI Entrez E-utilities History Links API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Entrez Programming Utilities (E-utilities) provide a stable interface to the NCBI Entrez query and database system. Nine server-side programs allow searching, fetching, posting, linking, and summarizing records across PubMed and 38 NCBI databases including PubMed Central, Gene, Nuccore, and Protein. Supports searching 35M+ biomedical citations, retrieving abstracts, full-text links, MeSH terms, and related article metadata.\n\nContact Support:\n Name: NCBI Help Desk\n Email: info@ncbi.nlm.nih.gov",
+      "type": "text/plain"
+    }
+  }
+}

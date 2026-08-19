@@ -1,0 +1,214 @@
+{
+  "item": [
+    {
+      "id": "2c880307-d7e3-4a54-a189-ae61f5c58c28",
+      "name": "Summary",
+      "description": {
+        "content": "Operations for retrieving document summaries",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "89574dfa-538d-4b6e-8ecf-1d71558e3348",
+          "name": "ESummary - Retrieve document summaries",
+          "request": {
+            "name": "ESummary - Retrieve document summaries",
+            "description": {
+              "content": "Returns document summaries (DocSums) for a list of input UIDs or for a set of UIDs stored on the Entrez History server.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "esummary.fcgi"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "db",
+                  "value": "<string>",
+                  "description": "(Required) Database containing the UIDs (e.g., pubmed, gene, assembly)."
+                },
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "Comma-delimited list of UIDs."
+                },
+                {
+                  "disabled": false,
+                  "key": "retstart",
+                  "value": "1",
+                  "description": "Sequential index of first DocSum to retrieve (default: 1)."
+                },
+                {
+                  "disabled": false,
+                  "key": "retmax",
+                  "value": "<integer>",
+                  "description": "Number of DocSums to retrieve (max: 10000)."
+                },
+                {
+                  "disabled": false,
+                  "key": "retmode",
+                  "value": "xml",
+                  "description": "Response format. Values: xml (default), json."
+                },
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "<string>",
+                  "description": "Set to '2.0' to use version 2.0 ESummary XML with database-specific fields."
+                },
+                {
+                  "disabled": false,
+                  "key": "WebEnv",
+                  "value": "<string>",
+                  "description": "Web environment string from a previous ESearch, EPost, or ELink call."
+                },
+                {
+                  "disabled": false,
+                  "key": "query_key",
+                  "value": "<integer>",
+                  "description": "Integer query key from a previous call."
+                },
+                {
+                  "disabled": false,
+                  "key": "tool",
+                  "value": "<string>",
+                  "description": "Name of application making the call."
+                },
+                {
+                  "disabled": false,
+                  "key": "email",
+                  "value": "<email>",
+                  "description": "Contact email address."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_key",
+                  "value": "<string>",
+                  "description": "API key to enable higher request rate."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a6260a12-21f7-471f-bcae-01f153d23472",
+              "name": "Document summaries in requested format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "esummary.fcgi"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "db",
+                      "value": "pubmed"
+                    },
+                    {
+                      "key": "id",
+                      "value": "36328499,36328500"
+                    },
+                    {
+                      "key": "retstart",
+                      "value": "1"
+                    },
+                    {
+                      "key": "retmax",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "retmode",
+                      "value": "xml"
+                    },
+                    {
+                      "key": "version",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "WebEnv",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query_key",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "tool",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "key": "api_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"result\": {\n    \"uids\": [\n      \"string\",\n      \"string\"\n    ],\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {},\n    \"key_3\": {}\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "15c436b9-31be-4568-b6c0-960d37b1c436",
+    "name": "NCBI Entrez E-utilities History Summary API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Entrez Programming Utilities (E-utilities) provide a stable interface to the NCBI Entrez query and database system. Nine server-side programs allow searching, fetching, posting, linking, and summarizing records across PubMed and 38 NCBI databases including PubMed Central, Gene, Nuccore, and Protein. Supports searching 35M+ biomedical citations, retrieving abstracts, full-text links, MeSH terms, and related article metadata.\n\nContact Support:\n Name: NCBI Help Desk\n Email: info@ncbi.nlm.nih.gov",
+      "type": "text/plain"
+    }
+  }
+}
