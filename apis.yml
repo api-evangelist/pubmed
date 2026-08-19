@@ -28,7 +28,7 @@ tags:
 created: "2026-06-13"
 modified: "2026-06-13"
 url: https://raw.githubusercontent.com/api-evangelist/pubmed/refs/heads/main/apis.yml
-specificationVersion: "0.19"
+specificationVersion: '0.23'
 apis:
 - name: PubMed Central OA API
   description: >-
