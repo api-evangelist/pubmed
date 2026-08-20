@@ -15,6 +15,17 @@ accessModel:
   method: derived
 image: https://www.ncbi.nlm.nih.gov/coreutils/img/ncbilogo.png
 tags:
+  - Biomedical
+  - Life Science
+  - Research
+  - Literature
+  - Citations
+  - abstracts
+  - Mesh
+  - Genomics
+  - PubMed
+  - NCBI
+tags_raw:
   - biomedical
   - life science
   - research
@@ -39,6 +50,12 @@ apis:
   humanURL: https://pmc.ncbi.nlm.nih.gov/tools/developers/
   baseURL: https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi
   tags:
+  - Open Access
+  - Full Text
+  - PMC
+  - XML
+  - PDF
+  tags_raw:
   - open access
   - full text
   - PMC
@@ -75,6 +92,12 @@ apis:
   baseURL: https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/
   tags:
   - OAI-PMH
+  - Metadata
+  - Harvesting
+  - PMC
+  - Interoperability
+  tags_raw:
+  - OAI-PMH
   - metadata
   - harvesting
   - PMC
@@ -106,6 +129,14 @@ apis:
   humanURL: https://pmc.ncbi.nlm.nih.gov/tools/developers/
   baseURL: https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi
   tags:
+  - BioC
+  - NLP
+  - Text Mining
+  - Full Text
+  - XML
+  - JSON
+  - PMC
+  tags_raw:
   - BioC
   - NLP
   - text mining
@@ -140,6 +171,13 @@ apis:
   humanURL: https://pmc.ncbi.nlm.nih.gov/tools/developers/
   baseURL: https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/
   tags:
+  - identifier
+  - Conversion
+  - PMID
+  - PMCID
+  - DOI
+  - PMC
+  tags_raw:
   - identifier
   - conversion
   - PMID
