@@ -1,5 +1,17 @@
 name: PubMed
 description: NCBI PubMed is the primary biomedical literature database providing free access to over 35 million citations and abstracts from life science journals and online books. The Entrez Programming Utilities (E-utilities) REST API enables programmatic searching, retrieval, and linking of citations, article metadata, abstracts, full-text links, and MeSH terms across PubMed and 38 other NCBI databases.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: free
   onboarding: self-serve
