@@ -6,7 +6,9 @@
       "feed_url": "https://ncbiinsights.ncbi.nlm.nih.gov/feed/",
       "title": "",
       "saved": 0,
-      "method": "feed"
+      "method": "feed",
+      "nature": "undetermined",
+      "nature_basis": null
     },
     {
       "source": "https://support.nlm.nih.gov/",
@@ -18,5 +20,8 @@
     }
   ],
   "fetched": "2026-08-30T22:05:13Z",
-  "post_count": 19
+  "post_count": 19,
+  "feed_nature": "undetermined",
+  "feed_nature_basis": null,
+  "feed_nature_note": "Whether these posts are the vendor publishing or its support community, decided on the URL path grammar of the saved posts -- not the hostname, which carries both on Khoros, and not author diversity, which flags large vendor blogs as forums. 'undetermined' means undetermined."
 }

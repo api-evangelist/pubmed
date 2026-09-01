@@ -27,14 +27,14 @@ accessModel:
   method: derived
 image: https://www.ncbi.nlm.nih.gov/coreutils/img/ncbilogo.png
 tags:
-  - biomedical
-  - life science
-  - research
-  - literature
+  - Biomedical
+  - Life Science
+  - Research
+  - Literature
   - Citations
   - Abstracts
-  - MeSH
-  - genomics
+  - Mesh
+  - Genomics
   - PubMed
   - NCBI
 tags_raw:
@@ -62,8 +62,8 @@ apis:
   humanURL: https://pmc.ncbi.nlm.nih.gov/tools/developers/
   baseURL: https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi
   tags:
-  - open access
-  - full text
+  - Open Access
+  - Full Text
   - PMC
   - XML
   - PDF
@@ -105,9 +105,9 @@ apis:
   tags:
   - OAI-PMH
   - Metadata
-  - harvesting
+  - Harvesting
   - PMC
-  - interoperability
+  - Interoperability
   tags_raw:
   - OAI-PMH
   - metadata
@@ -143,8 +143,8 @@ apis:
   tags:
   - BioC
   - NLP
-  - text mining
-  - full text
+  - Text Mining
+  - Full Text
   - XML
   - JSON
   - PMC
@@ -184,7 +184,7 @@ apis:
   baseURL: https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/
   tags:
   - identifier
-  - conversion
+  - Conversion
   - PMID
   - PMCID
   - DOI
