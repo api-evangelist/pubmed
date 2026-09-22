@@ -1,31 +1,29 @@
-# Kin Score artifact — pubmed — 2026-08-20T205517
+# Kin Score artifact — pubmed — 2026-09-20T232958
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: pubmed
-  schema_version: 0.12.0
-  scored_at: '2026-08-20'
-  run_ts: 2026-08-20T205517
-  composite: 32.1
+  schema_version: 0.22.0
+  scored_at: '2026-09-20'
+  run_ts: 2026-09-20T232958
+  composite: 32.3
   band: thin
   facets:
-    discoverability: 74.1
-    contract_quality: 57.8
-    governance: 9.8
-    operational_transparency: 0.0
-    developer_ergonomics: 14.3
-    commercial_clarity: 28.9
+    discoverability: 68.5
+    contract_quality: 56.2
     contract_governance: 9.8
+    operational_transparency: 0.0
+    developer_ergonomics: 23.8
     access_clarity: 28.9
   agent_readiness:
-    score: 32.1
+    score: 22.3
     band: agent-aware
     dimensions:
       spec_presence: true
       agentic_access: derived
       reversibility_documented: false
       mcp_server: false
-      auth_clarity: true
+      auth_clarity: bearer
       idempotency: false
       error_semantics: false
       openapi_examples: partial
@@ -36,6 +34,10 @@ kin_score:
       consent_identity: false
       agent_card: false
       dry_run_mode: false
+      delegated_identity: false
+      protected_resource_metadata: false
+      dynamic_client_registration: false
+      agentic_commerce: false
   regulatory:
     applies: true
     regime: Health
