@@ -1,12 +1,7 @@
 {
   "provider": "pubmed",
   "sources": [
-    "pubmed-history-api-openapi.yml",
-    "pubmed-info-api-openapi.yml",
-    "pubmed-links-api-openapi.yml",
-    "pubmed-retrieval-api-openapi.yml",
-    "pubmed-search-api-openapi.yml",
-    "pubmed-summary-api-openapi.yml"
+    "_original/entrez-eutils.json"
   ],
   "outputs": [
     "pubmed-history-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "entrez-eutils.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "pubmed-history-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pubmed-info-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pubmed-links-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pubmed-retrieval-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pubmed-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "pubmed-summary-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
