@@ -322,6 +322,31 @@ paths:
                 type: object
 components:
   schemas:
+    ESpellResult:
+      type: object
+      properties:
+        espellresult:
+          type: object
+          properties:
+            database:
+              type: string
+            query:
+              type: string
+            correctedquery:
+              type: string
+              description: Spell-corrected version of the query.
+            spelledquery:
+              type: object
+              properties:
+                replaced:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      position:
+                        type: string
+                      text:
+                        type: string
     ESearchResult:
       type: object
       properties:
@@ -356,31 +381,6 @@ components:
             querytranslation:
               type: string
               description: Entrez query translation used.
-    ESpellResult:
-      type: object
-      properties:
-        espellresult:
-          type: object
-          properties:
-            database:
-              type: string
-            query:
-              type: string
-            correctedquery:
-              type: string
-              description: Spell-corrected version of the query.
-            spelledquery:
-              type: object
-              properties:
-                replaced:
-                  type: array
-                  items:
-                    type: object
-                    properties:
-                      position:
-                        type: string
-                      text:
-                        type: string
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
