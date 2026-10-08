@@ -342,6 +342,12 @@ apis:
     url: >-
       https://raw.githubusercontent.com/api-evangelist/pubmed/refs/heads/main/finops/entrez-eutils.yml
 common:
+  - type: Plans
+    url: plans/entrez-eutils.yml
+  - type: RateLimits
+    url: rate-limits/entrez-eutils.yml
+  - type: FinOps
+    url: finops/entrez-eutils.yml
   - type: AgenticAccess
     url: agentic-access/pubmed-agentic-access.yml
   - type: DomainSecurity
