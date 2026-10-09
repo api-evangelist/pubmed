@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: PubMed / NCBI E-utilities API Plans
 description: NCBI E-utilities and PubMed APIs are free public services provided by the National Library of Medicine (NLM), a branch of the U.S. National Institutes of Health. There are no paid tiers or subscription plans. Access is differentiated by whether an API key is used, which affects rate limits.
 provider: PubMed / NCBI
@@ -50,3 +54,22 @@ plans:
       - API key must be included as api_key parameter in each request
       - Must adhere to NCBI usage policies and not scrape bulk data during peak hours
       - Commercial redistribution of data must comply with source database licenses
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - free
+  units: []
+  plans:
+  - name: Anonymous / No API Key
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
+  - name: Registered API Key
+    access: other
+    model: free
+    model_how: derived
+    units: []
+    periods: []
