@@ -143,7 +143,7 @@ apis:
   baseURL: https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi
   tags:
   - BioC
-  - NLP
+  - Natural Language Processing
   - Text Mining
   - Full Text
   - XML
