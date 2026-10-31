@@ -66,52 +66,120 @@
 
 NCBI PubMed is the primary biomedical literature database providing free access to over 35 million citations and abstracts from life science journals and online books. The Entrez Programming Utilities (E-utilities) REST API enables programmatic searching, retrieval, and linking of citations, article metadata, abstracts, full-text links, and MeSH terms across PubMed and 38 other NCBI databases.
 
-**Human URL:** https://pubmed.ncbi.nlm.nih.gov/  
-**Developer Portal:** https://www.ncbi.nlm.nih.gov/home/develop/api/  
-**Base URL:** https://eutils.ncbi.nlm.nih.gov/entrez/eutils/  
-**Operated by:** U.S. National Library of Medicine (NLM) / National Institutes of Health (NIH)
+**Areas:** Biomedical · Life Sciences · Research · Literature · Citations · Abstracts · Mesh · Genomics · PubMed · NCBI
 
-## APIs
+## PubMed on APIs.io
 
-| API | Base URL | Description |
-|-----|----------|-------------|
-| Entrez E-utilities | https://eutils.ncbi.nlm.nih.gov/entrez/eutils/ | Search, fetch, link, and summarize records across 38 NCBI databases |
-| PMC OA API | https://www.ncbi.nlm.nih.gov/pmc/utils/oa/oa.fcgi | Citation data and download links for Open Access articles |
-| PMC OAI-PMH | https://pmc.ncbi.nlm.nih.gov/api/oai/v1/mh/ | Metadata harvesting for all PMC archive items |
-| PMC BioC API | https://www.ncbi.nlm.nih.gov/research/bionlp/RESTful/pmcoa.cgi | Full text in BioC XML/JSON for NLP and text mining |
-| PMC ID Converter | https://pmc.ncbi.nlm.nih.gov/tools/idconv/api/v1/articles/ | Convert between PMID, PMCID, DOI, and manuscript IDs |
+Everything profiled for PubMed is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/pubmed/](https://apis.io/providers/pubmed/)** — or go straight to one of the APIs or properties below.
 
-## E-utility Endpoints
+### APIs (10)
 
-| Endpoint | URL | Function |
-|----------|-----|----------|
-| ESearch | esearch.fcgi | Text search returning matching UIDs |
-| ESummary | esummary.fcgi | Document summaries for a list of UIDs |
-| EFetch | efetch.fcgi | Full formatted records (abstracts, XML, etc.) |
-| EPost | epost.fcgi | Upload UIDs to History Server |
-| ELink | elink.fcgi | Find linked records across databases |
-| EInfo | einfo.fcgi | Database statistics and searchable fields |
-| EGQuery | egquery.fcgi | Search all 38 databases simultaneously |
-| ESpell | espell.fcgi | Spelling suggestions for search terms |
-| ECitMatch | ecitmatch.cgi | Batch PubMed ID lookup from citation strings |
+- [PubMed Central OA API](https://apis.io/apis/pubmed/pubmed-central-oa-api/) — The PMC Open Access API provides citation data, license information, and download links for Open Access articles in PubMed Central. Supports filtering by…
+- [PMC OAI-PMH API](https://apis.io/apis/pubmed/pmc-oai-pmh-api/) — The PMC OAI-PMH (Open Archives Initiative Protocol for Metadata Harvesting) API enables systematic harvesting of metadata for all PMC archive items and full…
+- [PMC BioC API](https://apis.io/apis/pubmed/pmc-bioc-api/) — The BioC API provides full text retrieval of PubMed Central Open Access articles in BioC XML or JSON format, optimized for natural language processing (NLP)…
+- [PMC ID Converter API](https://apis.io/apis/pubmed/pmc-id-converter-api/) — The PMC ID Converter API translates between different article identifier formats including PubMed IDs (PMIDs), PubMed Central IDs (PMCIDs), Digital Object…
+- [PubMed History API](https://apis.io/apis/pubmed/pubmed-history-api/) — Operations for managing sets of records on the Entrez History server
+- [PubMed Info API](https://apis.io/apis/pubmed/pubmed-info-api/) — Operations for retrieving database metadata and information
+- [PubMed Links API](https://apis.io/apis/pubmed/pubmed-links-api/) — Operations for finding linked records between databases
+- [PubMed Retrieval API](https://apis.io/apis/pubmed/pubmed-retrieval-api/) — Operations for retrieving records from Entrez databases
+- [PubMed Search API](https://apis.io/apis/pubmed/pubmed-search-api/) — Operations for searching Entrez databases
+- [PubMed Summary API](https://apis.io/apis/pubmed/pubmed-summary-api/) — Operations for retrieving document summaries
 
-## Authentication
+### Published properties
 
-- **No API key:** 3 requests/second (free, no registration)
-- **With API key:** 10 requests/second (free NCBI account required)
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-Obtain an API key at: https://account.ncbi.nlm.nih.gov/ (Settings page)
+#### Agentic access (1)
 
-Include `api_key=YOUR_KEY` as a query parameter.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-## Pricing
+- [Pubmed Agentic Access](https://apis.io/agentic-access/pubmed/pubmed-agentic-access/)
 
-All NCBI/PubMed APIs are **free of charge** — operated as a public service by the U.S. National Library of Medicine.
+#### JSON Schema (2)
 
-## Links
+The data models the API reads and writes.
 
-- [Documentation](https://www.ncbi.nlm.nih.gov/books/NBK25497/)
-- [Quick Start Guide](https://www.ncbi.nlm.nih.gov/books/NBK25500/)
-- [PMC Developer Tools](https://pmc.ncbi.nlm.nih.gov/tools/developers/)
-- [Support](https://support.nlm.nih.gov/)
-- [Usage Policies](https://www.ncbi.nlm.nih.gov/home/about/policies/)
+- [ESearch Response](https://apis.io/schemas/pubmed/esearch-response/)
+- [PubMed Article](https://apis.io/schemas/pubmed/pubmed-article/)
+
+#### JSON-LD (2)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Pubmed Article Example Context](https://apis.io/jsonld/pubmed/pubmed-article-example/)
+- [Pubmed Context](https://apis.io/jsonld/pubmed/pubmed-context/)
+
+#### Examples (4)
+
+Example requests and responses.
+
+- [Efetch Abstracts](https://apis.io/examples/pubmed/efetch-abstracts/)
+- [Elink Related Articles](https://apis.io/examples/pubmed/elink-related-articles/)
+- [Esearch Pubmed](https://apis.io/examples/pubmed/esearch-pubmed/)
+- [Esummary Pubmed](https://apis.io/examples/pubmed/esummary-pubmed/)
+
+#### Collections (6)
+
+Postman and Open Collection request collections.
+
+- [NCBI Entrez E-utilities History API](https://apis.io/collections/pubmed/open-pubmed-history-api/)
+- [NCBI Entrez E-utilities History Info API](https://apis.io/collections/pubmed/open-pubmed-info-api/)
+- [NCBI Entrez E-utilities History Links API](https://apis.io/collections/pubmed/open-pubmed-links-api/)
+- [NCBI Entrez E-utilities History Retrieval API](https://apis.io/collections/pubmed/open-pubmed-retrieval-api/)
+- [NCBI Entrez E-utilities History Search API](https://apis.io/collections/pubmed/open-pubmed-search-api/)
+- [NCBI Entrez E-utilities History Summary API](https://apis.io/collections/pubmed/open-pubmed-summary-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [PubMed — jsonschema rules](https://apis.io/rules/pubmed/pubmed-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Pubmed Authentication](https://apis.io/security/pubmed/pubmed-authentication/)
+- [Pubmed Domain Security](https://apis.io/security/pubmed/pubmed-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Entrez Eutils](https://apis.io/plans/pubmed/entrez-eutils/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Entrez Eutils](https://apis.io/rate-limits/pubmed/entrez-eutils/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Entrez Eutils](https://apis.io/finops/pubmed/entrez-eutils/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Blog](https://ncbiinsights.ncbi.nlm.nih.gov/feed/)
+
+## API Evangelist rating
+
+**Unrated** — no public website could be reached for this company, so there was almost nothing to measure and nothing a reader could check.
+
+This is not a score of zero. No rating is published for this company. If that is wrong because something public exists that we missed, say so on this repository or email [info@apievangelist.com](mailto:info@apievangelist.com) and it will be re-run — free, and no justification needed.
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for PubMed: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/pubmed/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
